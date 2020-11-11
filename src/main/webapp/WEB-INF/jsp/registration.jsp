@@ -7,14 +7,8 @@
 <!-- Webjars for Bootstrap and Jquery -->
 
 <head>
-    <link rel="stylesheet" href="../css/stylesheet.css"/>
-    <spring:url value="/resources/css/stylesheet.css" var="stylesheetCss" />
-
-    
-    <link href="${mainCss}" rel="stylesheet" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="stylesheet_registration.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -27,35 +21,46 @@
     <title>Registration</title>
 </head>
 <body>
-
+    <header>
+        <br>
+        <h3>University of Georgia</h3>
+        <h1>COVID-19 Resource Site</h1>
+    </header>
+    <nav>
+        <hr>
+        <a href="index.html">HOME</a>
+        <a href="contacttracing">CONTACT TRACING</a>
+        <a href="donations.html">DONATIONS</a>
+        <a href="testingsites.html">TESTING SITES</a>
+        <a href="login">LOGIN</a>
+        <hr>
+        <hr>
+    </nav>
+    <br>
 <%--@elvariable id="accountForm" type=""--%>
 
 <form:form method="POST" modelAttribute="accountForm">
     <div class="MyForm form-group">
-        <h1>Sign Up</h1>
+        <h2>Sign Up</h2>
 
-        <form:input type="text" class="MyInput" id="firstName" placeholder="Enter first name" path="firstName"/>
+        <form:input type="text" class="MyInput" id="firstName" placeholder="Enter first name" path="firstName"/><br><br>
 
-        <form:input type="text" class="MyInput" id="userName" placeholder="Enter a Username" path="userName"/>
+        <form:input type="text" class="MyInput" id="userName" placeholder="Enter a Username" path="userName"/><br><br>
 
-        <form:input type="email" class="MyInput" id="email" path="email" placeholder="Enter email address"/>
+        <form:input type="email" class="MyInput" id="email" path="email" placeholder="Enter email address"/><br><br>
 
-        <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password"/>
+        <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password"/><br><br>
 
-        <form:input type="text" class="MyInput" id="lastName" path="lastName" placeholder="Enter last Name"/>
+        <form:input type="text" class="MyInput" id="lastName" path="lastName" placeholder="Enter last Name"/><br><br>
 
-        <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="Enter phone number"/>
+        <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="Enter phone number"/><br><br>
 
-        <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="Do you want phone alerts"/>
+        <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="Do you want phone alerts"/><br><br>
 
-        <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="Do you want email alerts" />
+        <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="Do you want email alerts" /><br><br>
 
         <form:button type="submit" class="from-control">Submit</form:button>
 
-    </div>
-
-    <div>
-        <img src="images/reg1.png" alt="picture">
     </div>
 
 
