@@ -41,9 +41,9 @@
 
         <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="Enter phone number"/>
 
-        <form:checkboxes type="checkbox" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="Do you want phone alerts" items="Yes"/>
+        <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="Do you want phone alerts"/>
 
-        <form:checkboxes type="checkbox" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="Do you want email alerts" items="Yes"/>
+        <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="Do you want email alerts" />
 
         <form:button type="submit" class="from-control">Submit</form:button>
 

@@ -39,18 +39,29 @@ public class RegistrationController {
         }
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
+        AccountEntity phoneNumberChecker = accountRepo.findByPhoneNumber( accountForm.getPhoneNumber() );
+        if (emailChecker != null) {
+            System.out.println( "Someone already exist with that email" );
+            model.addAttribute( "emailExist", "Email already exist" );
+        } else if (userNameChecker != null) {
+            System.out.println( "Someone already exist with that userName" );
+            model.addAttribute( "userNameExist", "UserName already exist" );
+        } else if (phoneNumberChecker != null) {
+            System.out.println( "Someone already exist with that Phone Number" );
+            model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
+        } else {
+            accountForm.setFirstName( accountForm.getFirstName() );
+            accountForm.setEmail( accountForm.getEmail().toLowerCase() );
+            accountForm.setPassword( accountForm.getPassword() );
+            accountForm.setUserName( accountForm.getUserName() );
+            accountForm.setLastName( accountForm.getLastName() );
+            accountForm.setPhoneNumber( accountForm.getPhoneNumber() );
+            accountForm.setIsEmailAlert( accountForm.getIsEmailAlert() );
+            accountForm.setIsPhoneAlert( accountForm.getIsPhoneAlert() );
+            accountRepo.save( accountForm );
+            return "index";
 
-        accountForm.setFirstName( accountForm.getFirstName() );
-        accountForm.setEmail( accountForm.getEmail().toLowerCase() );
-        accountForm.setPassword( accountForm.getPassword() );
-        accountForm.setUserName( accountForm.getUserName() );
-        accountForm.setLastName( accountForm.getLastName() );
-        accountForm.setPhoneNumber( accountForm.getPhoneNumber() );
-        accountForm.setIsEmailAlert( accountForm.getIsEmailAlert() );
-        accountForm.setIsPhoneAlert( accountForm.getIsPhoneAlert() );
-
-        accountRepo.save( accountForm );
-
+        }
         return "registration";
 
     }
