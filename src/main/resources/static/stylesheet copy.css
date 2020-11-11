@@ -1,0 +1,71 @@
+﻿html {
+    background-color: #2b2b2b;
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1 {
+    color: #fbfbfb;
+    text-align: center;
+}
+
+h3 {
+    color: #fbfbfb;
+    text-align: center;
+}
+
+hr {
+    border: 1px solid red;
+}
+
+nav {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+    color: #fbfbfb;
+    margin: 0%;
+}
+
+a {
+    text-decoration: none;
+    color: #fbfbfb;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 2%;
+    padding-top: 2%;
+    font-size: larger;
+}
+
+.grid-container {
+    padding: 5%;
+    display: grid;
+    grid-column-gap: 2%;
+    grid-row-gap: 10%;
+    grid-template-columns: 25% 25% 25% 25%;
+}
+
+.grid-item {
+    color: #fbfbfb;
+    font-size: larger;
+    text-align: center;
+}
+
+.make-account-container {
+    background-color: white;
+}
+
+.grid-container a {
+    border: solid;
+    border-color: white;
+}
+
+p {
+    text-align: center;
+    color: white;
+
+}
+
+
