@@ -19,22 +19,21 @@ public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String showLoginPage(ModelMap model) {
-        model.addAttribute("login", new AccountEntity());
+        model.addAttribute( "login", new AccountEntity() );
         return "login";
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public Object submitLoginIn(@ModelAttribute("login") AccountEntity accountForm, Model model) {
 
-        AccountEntity accountInstance = accountRepo.findByEmail(accountForm.getEmail().toLowerCase());
-
-        if (accountInstance == null || !(accountInstance.getPassword().matches(accountForm.getPassword()))) {
-            System.out.println("Email / Password does not exist");
-            System.out.println(accountInstance);
+        AccountEntity accountInstance = accountRepo.findByEmail( accountForm.getEmail().toLowerCase() );
+        if (accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() ))) {
+            System.out.println( "Email / Password does not exist" );
+            System.out.println( accountInstance );
             return "login";
         }
-        if (!(accountInstance == null || !(accountInstance.getPassword().matches(accountForm.getPassword())))) {
-            System.out.println("The email exists");
+        if (!(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )))) {
+            System.out.println( "The email exists" );
             return "index";
         }
         return null;
