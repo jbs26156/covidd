@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 @Entity(name = "buildings")
 public class BuildingsEntity {
@@ -16,6 +17,8 @@ public class BuildingsEntity {
     private String direction;
     private String name;
     private Long numPositives;
+    private Date mostRecentPositive;
+
     public Long getId() {
         return id;
     }
@@ -46,5 +49,13 @@ public class BuildingsEntity {
 
     public void setNumPositives(Long numPositives) {
         this.numPositives = numPositives;
+    }
+
+    public Date getMostRecentPositive() {
+        return mostRecentPositive;
+    }
+
+    public void setMostRecentPositive(Date mostRecentPositive) {
+        this.mostRecentPositive = mostRecentPositive;
     }
 }
