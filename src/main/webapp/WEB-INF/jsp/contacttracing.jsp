@@ -65,10 +65,10 @@
     <nav>
         <hr>
         <a href="index.html">HOME</a>
-        <a href="contacttracing_loggedout">CONTACT TRACING</a>
+        <a href="contacttracing">CONTACT TRACING</a>
         <a href="donations.html">DONATIONS</a>
         <a href="testingsites.html">TESTING SITES</a>
-        <a href="login.">LOGIN</a>
+        <a href="login">LOGIN</a>
         <hr>
         <hr>
     </nav>
@@ -104,61 +104,28 @@
     <br/>
     <button onclick="getCampusBuildings()">Submit</button>
     <br/><br />
-    <form name="contactTracingForm" action="#" th:action="" >
+    <form:form name="contactTracingForm" method="POST" modelAttribte="contactTracingForm">
         <div class="dateTested" id="dateTested">
             <label for="dateTested">When did you test positive for COVID-19?</label>
-            <input type="date" id="dateTested" required/><br />
+            <form:input type="date" id="dateTested" required/><br />
          </div>
         <div class="northBuildings" id="northBuildings" style="display: none; color: white;">
             <h3>North Campus Buildings</h3>
-            <div class="grid">
-                <div class="griditem">
-                    <label for="administrationBuilding">Administration Building</label>
-                    <input type="checkbox" id="administrationBuilding" />
-                </div>
-                <div class="griditem">
-                    <label for="peabodyHall">Peabody Hall</label>
-                    <input type="checkbox" id="peabodyHall" />
-                </div>
-                <div class="griditem">
-                    <label for="newCollege">New College</label>
-                    <input type="checkbox" id="newCollege" />
-                </div>
-                <div class="griditem">
-                    <label for="mainLibrary">Main Library</label>
-                    <input type="checkbox" id="mainLibrary" />
-                </div>
-            </div>
+            <form:checkboxes path="" items="${}"/>
         </div>
         <div class="southBuildings" id="southBuildings" style="display: none; color: white;">
             <h3>South Campus Buildings</h3>
-            <div class="grid">
-                <div class="griditem">
-                    <label for="Aderhold Hall">Aderhold Hall</label>
-                    <input type="checkbox" id="aderholdHall" />
-                </div>
-            </div>
+            <form:checkboxes path="" items="${}"/>
         </div>
         <div class="eastBuildings" id="eastBuildings" style="display: none; color: white;">
             <h3>East Campus Buildings</h3>
-            <div class="grid">
-                <div class="griditem">
-                    <label for="ramseyStudentCenter">Ramsey Student Center</label>
-                    <input type="checkbox" id="ramseyStudentCenter" />
-                </div>
-            </div>
+            <form:checkboxes path="" items="${}"/>
         </div>
         <div class="westBuildings" id="westBuildings" style="display: none; color: white;">
             <h3>West Campus Buildings</h3>
-            <div class="grid">
-                <div class="griditem">
-                    <label for="amosHall">Amos Hall</label>
-                    <input type="checkbox" id="amosHall" />
-                </div>
-            </div>
-
+            <form:checkboxes path="" items="${}"/>
         </div>
-        <button class="finalButton" id="finalButton" onclick="response()">Submit</button>
-    </form>
+        <form:button class="finalButton" id="finalButton" onclick="response()">Submit</form:button>
+    </form:form>
 </body>
 </html>
