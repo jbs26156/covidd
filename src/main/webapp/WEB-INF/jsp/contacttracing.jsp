@@ -111,19 +111,20 @@
          </div>
         <div class="northBuildings" id="northBuildings" style="display: none; color: white;">
             <h3>North Campus Buildings</h3>
-            <form:checkboxes path="" items="${}"/>
+            <form:checkbox path="franklinHouse" value="Franklin House"/>
+            <form:checkbox path="hodgsonOilBuilding" value="hodgsonOilBuilding"/>
         </div>
         <div class="southBuildings" id="southBuildings" style="display: none; color: white;">
             <h3>South Campus Buildings</h3>
-            <form:checkboxes path="" items="${}"/>
+            <form:checkbox path="biologicalSciencesBuilding" value="Biological Sciences Building"/>
         </div>
         <div class="eastBuildings" id="eastBuildings" style="display: none; color: white;">
             <h3>East Campus Buildings</h3>
-            <form:checkboxes path="" items="${}"/>
+            <form:checkbox path="wildlifeHealth" value="Wildlife Health"/>
         </div>
         <div class="westBuildings" id="westBuildings" style="display: none; color: white;">
             <h3>West Campus Buildings</h3>
-            <form:checkboxes path="" items="${}"/>
+            <form:checkbox path="aderhold" value="Aderhold"/>
         </div>
         <form:button class="finalButton" id="finalButton" onclick="response()">Submit</form:button>
     </form:form>
