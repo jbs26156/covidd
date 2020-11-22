@@ -11,12 +11,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
 public class RegistrationController {
-
+    String errors = "";
     @Autowired
     private AccountRepository accountRepo;
 
@@ -33,22 +34,25 @@ public class RegistrationController {
     @RequestMapping(value = "/registration", method = RequestMethod.POST)
     public Object registerAccount(@ModelAttribute("accountForm") AccountEntity accountForm, BindingResult bindingResult,
                                   Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
-
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
+        boolean eFlag = false, uFlag = false, pFlag = false;
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
         AccountEntity phoneNumberChecker = accountRepo.findByPhoneNumber( accountForm.getPhoneNumber() );
         if (emailChecker != null) {
             System.out.println( "Someone already exist with that email" );
             model.addAttribute( "emailExist", "Email already exist" );
+            eFlag = true;
         } else if (userNameChecker != null) {
             System.out.println( "Someone already exist with that userName" );
             model.addAttribute( "userNameExist", "UserName already exist" );
+            uFlag = true;
         } else if (phoneNumberChecker != null) {
             System.out.println( "Someone already exist with that Phone Number" );
             model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
+            pFlag = true;
         } else {
             accountForm.setFirstName( accountForm.getFirstName() );
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
@@ -60,10 +64,19 @@ public class RegistrationController {
             accountForm.setIsPhoneAlert( accountForm.getIsPhoneAlert() );
             accountRepo.save( accountForm );
             return "index";
+        }
+        if (eFlag) {
+            String emailError = "";
+
+            errors += emailError;
+        }
+        if (uFlag) {
 
         }
+        if (pFlag) {
+
+        }
+        request.setAttribute( "responseString", errors );
         return "registration";
-
     }
-
 }
