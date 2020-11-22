@@ -2,6 +2,7 @@ package com.csci4050.covid.controllers;
 
 import com.csci4050.covid.entities.AccountEntity;
 import com.csci4050.covid.repository.AccountRepository;
+import com.csci4050.covid.utils.Global;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,6 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 public class RegistrationController {
-    String errors = "";
     @Autowired
     private AccountRepository accountRepo;
 
@@ -37,7 +37,9 @@ public class RegistrationController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
-        boolean eFlag = false, uFlag = false, pFlag = false;
+        String errors = "";
+        System.out.println( errors.isEmpty() );
+        boolean eFlag = false, uFlag = false, pFlag = false, pAlert = false, eAlert = false;
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
         AccountEntity phoneNumberChecker = accountRepo.findByPhoneNumber( accountForm.getPhoneNumber() );
@@ -45,36 +47,71 @@ public class RegistrationController {
             System.out.println( "Someone already exist with that email" );
             model.addAttribute( "emailExist", "Email already exist" );
             eFlag = true;
-        } else if (userNameChecker != null) {
+        }
+        if (userNameChecker != null) {
             System.out.println( "Someone already exist with that userName" );
             model.addAttribute( "userNameExist", "UserName already exist" );
             uFlag = true;
-        } else if (phoneNumberChecker != null) {
+        }
+        if (phoneNumberChecker != null) {
             System.out.println( "Someone already exist with that Phone Number" );
             model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
             pFlag = true;
+        }
+        String e = accountForm.getIsEmailAlert().toLowerCase();
+        String p = accountForm.getIsPhoneAlert().toLowerCase();
+
+        if (e.equals( "yes" ) || e.equals( "no" )) {
+            eAlert = false;
         } else {
+            eAlert = true;
+        }
+        if (p.equals( "yes" ) || p.equals( "no" )) {
+            pAlert = false;
+        } else {
+            pAlert = true;
+        }
+
+        if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {
             accountForm.setFirstName( accountForm.getFirstName() );
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
             accountForm.setPassword( accountForm.getPassword() );
             accountForm.setUserName( accountForm.getUserName() );
+            Global.id = accountForm.getId();
+            Global.curEmail = accountForm.getEmail();
+            if (accountForm.getIsEmailAlert().toLowerCase().equals( "yes" )) {
+                Global.isEmailAlert = true;
+            } else {
+                Global.isEmailAlert = false;
+            }
             accountForm.setLastName( accountForm.getLastName() );
             accountForm.setPhoneNumber( accountForm.getPhoneNumber() );
             accountForm.setIsEmailAlert( accountForm.getIsEmailAlert() );
             accountForm.setIsPhoneAlert( accountForm.getIsPhoneAlert() );
             accountRepo.save( accountForm );
-            return "index";
+            return "settings";
         }
-        if (eFlag) {
-            String emailError = "";
 
+        if (eFlag) {
+            String emailError = "Email already Used!";
             errors += emailError;
         }
-        if (uFlag) {
 
+        if (uFlag) {
+            String userError = "Username already Used!";
+            errors += userError;
         }
         if (pFlag) {
-
+            String phoneError = "Phone number already Used!";
+            errors += phoneError;
+        }
+        if (eAlert) {
+            String ee = "please enter yes or no!";
+            errors += ee;
+        }
+        if (pAlert) {
+            String pp = "please enter yes or no!";
+            errors += pp;
         }
         request.setAttribute( "responseString", errors );
         return "registration";
