@@ -21,7 +21,8 @@ public class ContactTracingController {
 
     @Autowired
     ContactTraceRepo contactTraceRepo;
-    public ContactTracingController( ContactTraceRepo contactTraceRepo) {
+
+    public ContactTracingController(ContactTraceRepo contactTraceRepo) {
         this.contactTraceRepo = contactTraceRepo;
 
     }
@@ -35,15 +36,14 @@ public class ContactTracingController {
 
     @RequestMapping(value = "/contacttracing", method = RequestMethod.POST)
     public Object contactTrace(@ModelAttribute("contactTracingForm") ContactTraceEntity contactTraceForm, BindingResult bindingResult,
-                               Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException{
+                               Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
-        //Code to send alert
-        //Code to ensure there are no duplicate entries in the table
 
-        contactTraceForm.setEmail( contactTraceForm.getEmail() );
+        //Fetch the users email
+        //contactTraceForm.setEmail( contactTraceForm.getEmail() );
         contactTraceForm.setBuilding1( contactTraceForm.getBuilding1() );
         contactTraceForm.setBuilding2( contactTraceForm.getBuilding2() );
         contactTraceForm.setBuilding3( contactTraceForm.getBuilding3() );
