@@ -1,6 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
     <head>
         <title>Settings</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -34,15 +34,10 @@
         <form:form method="POST" modelAttribute="selectForm">
             <form:label for="building1">Building 1</form:label>
             <form:select path="building1">
-                <form:option value="Aderhold">Aderhold</form:option>
-                <form:option value="PeabodyHall">Peabody Hall</form:option>
-             </form:select>
-            <form:label for="building2">Building 2</form:label>
-                <form:select path="building2">
-                    <form:option value="MLC">MLC</form:option>
-                    <form:option value="Law">Law School</form:option>
-                </form:select>
-        <form:button class="finalButton" id="finalButton">Submit</form:button>
+                <form:option value="none" label="---SELECT---"/>
+                <form:options items="${buildingsList}"/>
+            </form:select>
+        <form:button class="submitButton" id="submitButton">Submit</form:button>
     </form:form>
     </body>
 </html>
