@@ -33,11 +33,47 @@
         <br>
         <form:form method="POST" modelAttribute="selectForm">
             <form:label for="building1">Building 1</form:label>
-            <form:select path="building1">
-                <form:option value="none" label="---SELECT---"/>
-                <form:options items="${buildingsList}"/>
-            </form:select>
-        <form:button class="submitButton" id="submitButton">Submit</form:button>
+                <form:select path="building1">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building2">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building3">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building4">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building5">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building6">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building7">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building8">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building9">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+                <form:select path="building10">
+                    <form:option value="none" label="---SELECT---"/>
+                    <form:options items="${buildingsList}"/>
+                </form:select>
+        <form:button class="submitButton" id="submitButton" type="submit">Submit</form:button>
     </form:form>
     </body>
 </html>
