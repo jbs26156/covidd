@@ -2,7 +2,7 @@
 
 <html>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
 
 <!-- Webjars for Bootstrap and Jquery -->
 
@@ -14,43 +14,37 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
-<body>
-    <header>
+    <body>
+        <header>
+            <br>
+            <h3>University of Georgia</h3>
+            <h1>COVID-19 Resource Site</h1>
+        </header>
+
+        <nav>
+            <hr>
+            <a href="index.html">HOME</a>
+            <a href="login">CONTACT TRACING</a>
+            <a href="donations_loggedout.html">DONATIONS</a>
+            <a href="testingsites_loggedout.html">TESTING SITES</a>
+            <a href="login" style="color: #e10000;">LOGIN</a>
+            <hr>
+            <hr>
+        </nav>
         <br>
-        <h3>University of Georgia</h3>
-        <h1>COVID-19 Resource Site</h1>
-    </header>
 
-    <nav>
-        <hr>
-        <a href="index.html">HOME</a>
-        <a href="contacttracing">CONTACT TRACING</a>
-        <a href="donations.html">DONATIONS</a>
-        <a href="testingsites.html">TESTING SITES</a>
-        <a href="login">LOGIN</a>
-        <hr>
-        <hr>
-    </nav>
-    <br>
-
-<%--@elvariable id="login" type=""--%>
-<form:form method="POST" modelAttribute="login">
-    <div class="MyForm form-group">
-        <h2>Login</h2>
-
-        <form:input type="email" class="MyInput" id="email" path="email" placeholder="Enter email address" /><br><br>
-
-        <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password"/><br><br>
-                                      
-
-        <form:button type="submit" class="from-control" >Submit</form:button>
-
-
-    </div>
-
-</form:form>
-<h3 style="margin-top: 5%;">Dont have an account yet? Create one <a href="registration">here</a>.</h3>
-
-</body>
+        <%--@elvariable id="login" type=""--%>
+        <form:form method="POST" modelAttribute="login">
+            <div class="MyForm form-group">
+                <h2>Login</h2>
+                <label for="email">Email: </label>
+                <form:input type="email" class="MyInput" id="email" path="email" placeholder="johndoe@example.com" /><br><br>
+                <label for="password">Password: </label>
+                <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password" /><br><br>
+                <form:button type="submit" class="from-control" >Submit</form:button>
+            </div>
+        </form:form>
+        <h3 style="margin-top: 5%;">Dont have an account yet? Create one <a href="registration">here</a>.</h3>
+    </body>
 </html>
 

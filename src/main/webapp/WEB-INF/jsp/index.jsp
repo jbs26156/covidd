@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE HTML>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 <head>
     <title>Covid-19 Application</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -15,14 +15,13 @@
 
     <nav>
         <hr>
-        <a href="home.html" style="padding-right: 1.5%; padding-left: 1.5%;">HOME</a>
-        <a href="contacttracing_loggedout.html" style="padding-right: 1.5%; padding-left: 1.5%;">CONTACT TRACING</a>
+        <a href="index" style="padding-right: 1.5%; padding-left: 1.5%; color: #e10000;">HOME</a>
+        <a href="contacttracing" style="padding-right: 1.5%; padding-left: 1.5%;">CONTACT TRACING</a>
         <a href="donations.html" style="padding-right: 1.5%; padding-left: 1.5%;">DONATIONS</a>
         <a href="testingsites.html" style="padding-right: 1.5%; padding-left: 1.5%;">TESTING SITES</a>
         <a href="symptomchecker.html" style="padding-right: 1.5%; padding-left: 1.5%;">SYMPTOM CHECKER</a>
-        <a href="notifications.html" style="padding-right: 1.5%; padding-left: 1.5%;">NOTIFICATIONS</a>
-        <a href="settings.html" style="padding-right: 1.5%; padding-left: 1.5%;">SETTINGS</a>
-        <a href="index.jsp" style="padding-right: 1.5%; padding-left: 1.5%;">LOG OUT</a>
+        <a href="settings" style="padding-right: 1.5%; padding-left: 1.5%;">SETTINGS</a>
+        <a href="index.html" style="padding-right: 1.5%; padding-left: 1.5%;">LOG OUT</a>
         <hr>
         <hr>
     </nav>
@@ -39,7 +38,7 @@
         <hr><br>
         <h2 style="color: black;">Get Text and Email Notifications!<br><br>Allow text and emails alerts to stay informed about campus hotspots no matter where you are.</h2>
         <br>
-        <h2><a href="settings.html" style="color: black; border: solid; border-color: #e10000; padding:.5%;">Change Settings</a></h2>
+        <h2><a href="settings" style="color: black; border: solid; border-color: #e10000; padding:.5%;">Change Settings</a></h2>
         <br><hr>
     </div>
     <div class="grid-container">
@@ -66,21 +65,19 @@
             provided several testing locations under the Testing Sites page.<br>
         </div>
         <div class="grid-item">
-            <a href="contacttracing_loggedout.html">Contact Tracing</a>
+            <a href="contacttracing">Contact Tracing</a>
         </div>
         <div class="grid-item">
-            <a href="donations_loggedout.html">Donations</a>
+            <a href="donations.html">Donations</a>
         </div>
         <div class="grid-item">
-            <a href="testingsites_loggedout.html">Testing Sites</a>
+            <a href="testingsites.html">Testing Sites</a>
         </div>
         <div class="grid-item">
-            <a href="login.html">Symptom Checker</a>
+            <a href="symptomchecker.html">Symptom Checker</a>
         </div>
     </div>
     <br><hr><br>
-    <h1>A look at COVID-19 positive tests at UGA</h1>
-    <p>Week 1 begins on Monday, August 17,2020 per 100 students</p>
-    <br>
+
 </body>
 </html>

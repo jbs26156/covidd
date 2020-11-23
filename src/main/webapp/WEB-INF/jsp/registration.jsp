@@ -30,9 +30,9 @@
     <nav>
         <hr>
         <a href="index.html">HOME</a>
-        <a href="contacttracing">CONTACT TRACING</a>
-        <a href="donations.html">DONATIONS</a>
-        <a href="testingsites.html">TESTING SITES</a>
+        <a href="login">CONTACT TRACING</a>
+        <a href="donations_loggedout.html">DONATIONS</a>
+        <a href="testingsites_loggedout.html">TESTING SITES</a>
         <a href="login">LOGIN</a>
         <hr>
         <hr>
@@ -43,23 +43,22 @@
 <form:form method="POST" modelAttribute="accountForm">
     <div class="MyForm form-group">
         <h2>Sign Up</h2>
-
-        <form:input type="text" class="MyInput" id="firstName" placeholder="Enter first name" path="firstName"/><br><br>
-
-        <form:input type="text" class="MyInput" id="userName" placeholder="Enter a Username" path="userName"/><br><br>
-
-        <form:input type="email" class="MyInput" id="email" path="email" placeholder="Enter email address"/><br><br>
-
-        <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password"/><br><br>
-
-        <form:input type="text" class="MyInput" id="lastName" path="lastName" placeholder="Enter last Name"/><br><br>
-
-        <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="Enter phone number"/><br><br>
-
-        <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="Do you want phone alerts"/><br><br>
-
-        <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="Do you want email alerts" /><br><br>
-
+        <label for="firstName">First Name: </label>
+        <form:input type="text" class="MyInput" id="firstName" placeholder="John" path="firstName" /><br><br>
+        <label for="lastName">Last Name: </label>
+        <form:input type="text" class="MyInput" id="lastName" path="lastName" placeholder="Doe" /><br><br>
+        <label for="username">Username: </label>
+        <form:input type="text" class="MyInput" id="userName" placeholder="johndoe" path="userName" /><br><br>
+        <label for="password">Password: </label>
+        <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password" /><br><br>
+        <label for="email">Email: </label>
+        <form:input type="email" class="MyInput" id="email" path="email" placeholder="johndoe@example.com" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" /><br><br>
+        <label for="phoneNumber">Phone Number: </label>
+        <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" /><br><br>
+        <label for="isPhoneAlert">Phone Alerts (yes/no): </label>
+        <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="yes or no" /><br><br>
+        <label for="isEmailAlert">Email Alerts (yes,no): </label>
+        <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="yes or no" /><br><br>
         <form:button type="submit" class="from-control">Submit</form:button>
 
     </div>
