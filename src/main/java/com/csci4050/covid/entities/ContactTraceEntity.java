@@ -8,6 +8,7 @@ import javax.persistence.Id;
 @Entity(name = "ContactTraceTable")
 public class ContactTraceEntity {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String email;
     private String building1;

@@ -12,7 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.mail.MessagingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
@@ -71,7 +70,6 @@ public class RegistrationController {
         } else {
             pAlert = true;
         }
-
         if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {
             accountForm.setFirstName( accountForm.getFirstName() );
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
