@@ -5,6 +5,11 @@ html {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    margin: 0%;
+    padding: 0%;
+}
+
 h1 {
     color: #fbfbfb;
     text-align: center;
@@ -39,11 +44,16 @@ a {
     font-size: larger;
 }
 
+a:hover {
+    color: #e10000;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 50% 50%;
     padding: 3%;
-    grid-column-gap: 2%;
+    grid-column-gap: 10px;
+
 }
 
 .grid-info {
@@ -51,6 +61,7 @@ a {
     padding: 1%;
     border: solid black;
     text-align: center;
+    margin: 0.5%;
 }
 
 
@@ -58,3 +69,7 @@ a {
     color: black;
 }
 
+
+.grid a {
+    color: black;
+}

@@ -1,4 +1,4 @@
-html {
+﻿html {
     background-color: #2b2b2b;
     margin: 0%;
     padding: 0%;
@@ -44,26 +44,32 @@ a {
     font-size: larger;
 }
 
-    a:hover {
-        color: #e10000;
-    }
-
-.submitButton {
-    text-align: center;
+a:hover {
+    color: #e10000;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 100%;
-    margin-left: 15%;
-    margin-right: 15%;
-    background-color: whitesmoke;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    border: 2px solid red;
+    grid-template-columns: 33% 33% 33%;
+    grid-column-gap: 2px;
 }
 
 .griditem {
+    background-color: whitesmoke;
+    border: solid black;
+    padding: 1%;
+    margin: 1%;
+    display: grid;
+    grid-template-rows: 20% 60% 20%;
+    grid-row-gap: 5px;
+    padding: 4%;
     text-align: center;
 }
+
+.grid h3 {
+    color: black;
+}
+
+.griditem a {
+    color: red;
+ }

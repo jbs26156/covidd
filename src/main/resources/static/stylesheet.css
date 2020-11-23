@@ -5,6 +5,11 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+    margin: 0%;
+    padding: 0%;
+}
+
 h1 {
     color: #fbfbfb;
     text-align: center;
@@ -39,11 +44,15 @@ a {
     font-size: larger;
 }
 
+a:hover {
+    color: #e10000;
+}
+
 .grid-container {
     padding: 5%;
     display: grid;
-    grid-column-gap: 2%;
-    grid-row-gap: 10%;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
     grid-template-columns: 25% 25% 25% 25%;
 }
 
@@ -51,6 +60,7 @@ a {
     color: #fbfbfb;
     font-size: larger;
     text-align: center;
+    margin: 2%;
 }
 
 .make-account-container {

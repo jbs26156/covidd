@@ -7,15 +7,12 @@
 
 body {
     margin: 0%;
+    padding: 0%;
 }
 
 h1 {
     color: #fbfbfb;
     text-align: center;
-    font-size: 45px;
-    margin: 0%;
-    padding-top: 0%;
-    padding-bottom: 0%;
 }
 
 h3 {
@@ -48,6 +45,7 @@ a:hover {
 form label {
     color: black;
     font-size: larger;
+    float: left;
 }
 
 form {
@@ -56,15 +54,16 @@ form {
     padding-top: 2%;
     padding-bottom: 2%;
     background-color: #cbcbcb;
-    margin-left: 35%;
-    margin-right: 35%;
+    margin-left: 33%;
+    margin-right: 33%;
     border: solid;
     border-color: #e10000;
-    float: left;
+    text-align: center;
 }
 
-.textfield {
-    width: 90%;
+input {
+    width: 65%;
+    float: right;
 }
 
 h3 a {
