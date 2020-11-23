@@ -27,21 +27,22 @@ public class BuildingsRepoImpl implements BuildingsRepository {
     }
 
     @Override
-    public String[] buildingsList() {
+    public String[] name(String name) {
         String[] list = new String[265];
         String querey = "SELECT * FROM BUILDINGS";
         H2JDBCUtils utils = new H2JDBCUtils();
         try (Connection connection = H2JDBCUtils.getConnection();
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement( querey )) {
-            preparedStatement.setInt( 1, 1 );
+           // preparedStatement.setInt( 0, 1 );
             System.out.println( preparedStatement );
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
             // Step 4: Process the ResultSet object.
             int index = 0;
             while (rs.next()) {
-                list[index] = rs.getString( "name" );
+                String x = rs.getString( "NAME" );
+                list[index] = x;
                 index++;
             }
             return list;

@@ -9,5 +9,5 @@ import java.util.Optional;
 public interface BuildingsRepository extends CrudRepository<BuildingsEntity, Long> {
     Optional<BuildingsEntity> findById(Long Id);
 
-    String[] buildingsList();
+    String[] name(String name);
 }
