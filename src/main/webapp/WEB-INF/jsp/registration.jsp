@@ -57,7 +57,7 @@
         <form:input type="tel" class="MyInput" id="phoneNumber" path="phoneNumber" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" /><br><br>
         <label for="isPhoneAlert">Phone Alerts (yes/no): </label>
         <form:input type="text" class="MyInput" id="isPhoneAlert" path="isPhoneAlert" placeholder="yes or no" /><br><br>
-        <label for="isEmailAlert">Email Alerts (yes,no): </label>
+        <label for="isEmailAlert">Email Alerts (yes/no): </label>
         <form:input type="text" class="MyInput" id="isEmailAlert" path="isEmailAlert" placeholder="yes or no" /><br><br>
         <form:button type="submit" class="from-control">Submit</form:button>
 
