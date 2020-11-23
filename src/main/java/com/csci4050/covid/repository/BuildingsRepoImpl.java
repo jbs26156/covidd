@@ -35,7 +35,7 @@ public class BuildingsRepoImpl implements BuildingsRepository {
              // Step 2:Create a statement using connection object
              PreparedStatement preparedStatement = connection.prepareStatement( querey )) {
            // preparedStatement.setInt( 0, 1 );
-            System.out.println( preparedStatement );
+           // System.out.println( preparedStatement );
             // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
             // Step 4: Process the ResultSet object.
