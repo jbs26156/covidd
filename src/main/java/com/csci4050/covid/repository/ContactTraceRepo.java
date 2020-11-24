@@ -7,10 +7,12 @@ import org.springframework.data.repository.CrudRepository;
 import java.util.Optional;
 
 
-public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity,Long> {
+public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity, Long> {
     Optional<ContactTraceEntity> findById(Long Id);
 
     ContactTraceEntity findByEmail(String email);
+
     ContactTraceEntity findByBuilding(String building);
+
     ContactTraceEntity findByAllBuilding(String building);
 }
