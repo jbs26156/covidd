@@ -71,6 +71,7 @@ public class SettingsController {
             query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
                     "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + CurrentUser.email + "\', \'" + CurrentUser.userName + "\')";
         } else {
+            index++;
             String n = "";
             query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
                     "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + n + "\', \'" + CurrentUser.userName + "\')";

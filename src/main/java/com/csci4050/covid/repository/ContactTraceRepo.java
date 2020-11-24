@@ -8,5 +8,7 @@ import java.util.Optional;
 
 
 public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity, Long> {
+    //TODO facade design pattern
+
     ContactTraceEntity findByBuilding(String building);
 }
