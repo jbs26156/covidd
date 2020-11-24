@@ -15,4 +15,7 @@ public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity, Lon
     ContactTraceEntity findByBuilding(String building);
 
     ContactTraceEntity findByAllBuilding(String building);
+
+
+
 }

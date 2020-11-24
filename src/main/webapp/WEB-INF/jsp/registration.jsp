@@ -47,7 +47,7 @@
         <form:input type="text" class="MyInput" id="firstName" placeholder="John" path="firstName" /><br><br>
         <label for="lastName">Last Name: </label>
         <form:input type="text" class="MyInput" id="lastName" path="lastName" placeholder="Doe" /><br><br>
-        <label for="username">Username: </label>
+        <label for="userName">Username: </label>
         <form:input type="text" class="MyInput" id="userName" placeholder="johndoe" path="userName" /><br><br>
         <label for="password">Password: </label>
         <form:password class="MyInput" id="password" placeholder="Enter password" autocomplete="false" path="password" /><br><br>

@@ -10,6 +10,7 @@ public class ContactTraceEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String username;
     private String email;
     private String building1;
     private String building2;
@@ -117,5 +118,14 @@ public class ContactTraceEntity {
     public void setBuilding10(String building10) {
         this.building10 = building10;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
 
 }
