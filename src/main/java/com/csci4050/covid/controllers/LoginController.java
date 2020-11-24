@@ -3,6 +3,7 @@ package com.csci4050.covid.controllers;
 
 import com.csci4050.covid.entities.AccountEntity;
 import com.csci4050.covid.repository.AccountRepository;
+import com.csci4050.covid.utils.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,9 +34,19 @@ public class LoginController {
             return "login";
         }
         if (!(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )))) {
-            System.out.println( "The email exists" );
+            //Build currentuser object using repo
+            CurrentUser user = new CurrentUser(accountForm.getEmail());
+            CurrentUser.id = user.getId();
+            CurrentUser.firstName = user.getFirstName();
+            CurrentUser.email = user.getEmail();
+            CurrentUser.password = user.getPassword();
+            CurrentUser.userName = user.getUserName();
+            CurrentUser.lastName = user.getLastName();
+            CurrentUser.phoneNumber = user.getPhoneNumber();
+            CurrentUser.isEmailAlert = user.getIsEmailAlert();
+            CurrentUser.isEmailAlert = user.getIsPhoneAlert();
             return "index";
         }
-        return null;
+        return "login";
     }
 }

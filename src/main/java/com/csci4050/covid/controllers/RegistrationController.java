@@ -2,7 +2,7 @@ package com.csci4050.covid.controllers;
 
 import com.csci4050.covid.entities.AccountEntity;
 import com.csci4050.covid.repository.AccountRepository;
-import com.csci4050.covid.utils.Global;
+import com.csci4050.covid.utils.CurrentUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +19,8 @@ import java.io.UnsupportedEncodingException;
 public class RegistrationController {
     @Autowired
     private AccountRepository accountRepo;
+
+    CurrentUser currentUser;
 
     public RegistrationController(AccountRepository accountRepo) {
         this.accountRepo = accountRepo;
@@ -75,19 +77,21 @@ public class RegistrationController {
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
             accountForm.setPassword( accountForm.getPassword() );
             accountForm.setUserName( accountForm.getUserName() );
-            Global.id = accountForm.getId();
-            Global.curEmail = accountForm.getEmail();
-            if (accountForm.getIsEmailAlert().toLowerCase().equals( "yes" )) {
-                Global.isEmailAlert = true;
-            } else {
-                Global.isEmailAlert = false;
-            }
             accountForm.setLastName( accountForm.getLastName() );
             accountForm.setPhoneNumber( accountForm.getPhoneNumber() );
             accountForm.setIsEmailAlert( accountForm.getIsEmailAlert() );
             accountForm.setIsPhoneAlert( accountForm.getIsPhoneAlert() );
             accountRepo.save( accountForm );
-            return "settings";
+            CurrentUser.id = accountForm.getId();
+            CurrentUser.firstName = accountForm.getFirstName();
+            CurrentUser.email = accountForm.getEmail();
+            CurrentUser.password = accountForm.getPassword();
+            CurrentUser.userName = accountForm.getUserName();
+            CurrentUser.lastName = accountForm.getLastName();
+            CurrentUser.phoneNumber = accountForm.getPhoneNumber();
+            CurrentUser.isEmailAlert = accountForm.getIsEmailAlert();
+            CurrentUser.isEmailAlert = accountForm.getIsPhoneAlert();
+            return "index";
         }
 
         if (eFlag) {
