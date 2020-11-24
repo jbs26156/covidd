@@ -1,6 +1,7 @@
 package com.csci4050.covid.repository;
 
 import com.csci4050.covid.entities.AccountEntity;
+import com.csci4050.covid.utils.CurrentUser;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
@@ -14,4 +15,5 @@ public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
 
     AccountEntity findByPhoneNumber(String phoneNumber);
 
+//    CurrentUser newCurrentUserFromEmail(String email);
 }

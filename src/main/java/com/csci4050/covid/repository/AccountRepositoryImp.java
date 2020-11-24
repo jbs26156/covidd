@@ -1,8 +1,10 @@
 package com.csci4050.covid.repository;
 
 import com.csci4050.covid.entities.AccountEntity;
+import com.csci4050.covid.utils.CurrentUser;
 import com.csci4050.covid.utils.H2JDBCUtils;
 
+import javax.swing.plaf.synth.SynthScrollBarUI;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -103,17 +105,13 @@ public class AccountRepositoryImp implements AccountRepository {
     @Override
     public AccountEntity findByEmail(String emailToFind) {
         //Check database for existing
-        String querey = "SELECT * FROM USER WHERE EMAIL = \' " + emailToFind + "\'";
+        String querey = "SELECT * FROM USER WHERE EMAIL = \'" + emailToFind + "\'";
         AccountEntity account = new AccountEntity();
         H2JDBCUtils utils = new H2JDBCUtils();
-        try (Connection connection = H2JDBCUtils.getConnection();
-             // Step 2:Create a statement using connection object
+        try (Connection connection = utils.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement( querey )) {
-            preparedStatement.setInt( 1, 1 );
             System.out.println( preparedStatement );
-            // Step 3: Execute the query or update query
             ResultSet rs = preparedStatement.executeQuery();
-            // Step 4: Process the ResultSet object.
             while (rs.next()) {
                 account.setId( (long) rs.getInt( "id" ) );
                 account.setPassword( rs.getString( "password" ) );
@@ -167,5 +165,22 @@ public class AccountRepositoryImp implements AccountRepository {
         //Else
         return null;
     }
+
+//    public CurrentUser newCurrentUserFromEmail(String email) {
+//        CurrentUser currentUser = new CurrentUser();
+//        AccountEntity currentAccountEntity = findByEmail( email );
+//        if (currentAccountEntity == null) {
+//            return null;
+//        }
+//        currentUser.setEmail( currentAccountEntity.getEmail() );
+//        currentUser.setFirstName( currentAccountEntity.getFirstName() );
+//        currentUser.setLastName( currentAccountEntity.getLastName() );
+//        currentUser.setId( currentAccountEntity.getId() );
+//        currentUser.setPassword( currentAccountEntity.getPassword() );
+//        currentUser.setIsEmailAlert( currentAccountEntity.getIsEmailAlert() );
+//        currentUser.setIsPhoneAlert( currentAccountEntity.getIsPhoneAlert() );
+//        currentUser.setPhoneNumber( currentAccountEntity.getPhoneNumber() );
+//        return currentUser;
+//    }
 
 }
