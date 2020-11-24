@@ -1,5 +1,7 @@
 package com.csci4050.covid.entities;
 
+import com.csci4050.covid.utils.CurrentUser;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
