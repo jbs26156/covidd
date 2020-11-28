@@ -1,8 +1,6 @@
 package com.csci4050.covid.controllers;
 
-import com.csci4050.covid.entities.AccountEntity;
 import com.csci4050.covid.entities.ContactTraceEntity;
-import com.csci4050.covid.repository.AccountRepository;
 import com.csci4050.covid.repository.ContactTraceRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -41,9 +39,6 @@ public class ContactTracingController {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
-
-        //Fetch the users email
-        //contactTraceForm.setEmail( contactTraceForm.getEmail() );
         contactTraceForm.setBuilding1( contactTraceForm.getBuilding1() );
         contactTraceForm.setBuilding2( contactTraceForm.getBuilding2() );
         contactTraceForm.setBuilding3( contactTraceForm.getBuilding3() );
