@@ -42,6 +42,12 @@ public class SettingsController {
         return "settings";
     }
 
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
+    public String showIndexPage(Model model) {
+        return "index";
+    }
+
+    
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public Object addBuildingsToTable(@ModelAttribute("selectForm") ContactTraceEntity selectForm, BindingResult bindingResult,
                                       Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
