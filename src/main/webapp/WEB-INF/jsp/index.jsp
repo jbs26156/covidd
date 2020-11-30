@@ -20,7 +20,9 @@
         <a href="testingsites.html" style="padding-right: 1.5%; padding-left: 1.5%;">TESTING SITES</a>
         <a href="symptomchecker.html" style="padding-right: 1.5%; padding-left: 1.5%;">SYMPTOM CHECKER</a>
         <a href="settings" style="padding-right: 1.5%; padding-left: 1.5%;">SETTINGS</a>
-        <a href="index.html" style="padding-right: 1.5%; padding-left: 1.5%;">LOG OUT</a>
+        <div id="logout" modelAttribute="logout">
+            <a href="index.html" style="padding-right: 1.5%; padding-left: 1.5%;">LOG OUT</a>
+        </div>
         <hr>
         <hr>
     </nav>
