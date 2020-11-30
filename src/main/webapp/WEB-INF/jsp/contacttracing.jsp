@@ -17,7 +17,7 @@
     </header>
     <nav>
         <hr>
-        <a href="index_loggedin.html" style="padding-right: 1.5%; padding-left: 1.5%;">HOME</a>
+        <a href="index" style="padding-right: 1.5%; padding-left: 1.5%;">HOME</a>
         <a href="contacttracing" style="padding-right: 1.5%; padding-left: 1.5%; color: #e1000;">CONTACT TRACING</a>
         <a href="donations.html" style="padding-right: 1.5%; padding-left: 1.5%;">DONATIONS</a>
         <a href="testingsites.html" style="padding-right: 1.5%; padding-left: 1.5%;">TESTING SITES</a>
