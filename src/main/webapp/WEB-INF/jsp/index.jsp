@@ -12,10 +12,9 @@
         <h3>University of Georgia</h3>
         <h1>COVID-19 Resource Site</h1>
     </header>
-
     <nav>
         <hr>
-        <a href="index" style="padding-right: 1.5%; padding-left: 1.5%; color: #e10000;">HOME</a>
+        <a href="index_loggedin.html" style="padding-right: 1.5%; padding-left: 1.5%; color: #e10000;">HOME</a>
         <a href="contacttracing" style="padding-right: 1.5%; padding-left: 1.5%;">CONTACT TRACING</a>
         <a href="donations.html" style="padding-right: 1.5%; padding-left: 1.5%;">DONATIONS</a>
         <a href="testingsites.html" style="padding-right: 1.5%; padding-left: 1.5%;">TESTING SITES</a>
@@ -46,18 +45,15 @@
             <div style="font-size: larger;"><b>CONTACT TRACING</b></div><br>
             To better serve students, we have created a way for students to submit a
             positive test and track where outbreaks of COVID-19 are occuring on campus.<br>
-
         </div>
         <div class="grid-item">
             <div style="font-size: larger;"><b>DONATIONS</b></div><br>
             We encourage you to donate to one of the several organizations around
             Athens and affiliated with UGA to help our community.<br>
-
         </div>
         <div class="grid-item">
             <div style="font-size: larger;"><b>TESTING SITES</b></div><br>
             We have provided a number of COVID-19 testing locations around Athens for your benefit.<br>
-
         </div>
         <div class="grid-item">
             <div style="font-size: larger;"><b>SYMPTOM CHECKER</b></div><br>
