@@ -48,32 +48,12 @@ a:hover {
     color: #e10000;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    grid-column-gap: 2px;
+p {
+    text-align: center;
+    color: white;
 }
 
-.griditem a:hover {
-    color: black;
-}
-
-.griditem {
-    background-color: whitesmoke;
-    border: solid black;
-    padding: 1%;
-    margin: 1%;
-    display: grid;
-    grid-template-rows: 20% 60% 20%;
-    grid-row-gap: 5px;
-    padding: 4%;
+.dawgchecklink {
+    margin-top: 5%;
     text-align: center;
 }
-
-.grid h3 {
-    color: black;
-}
-
-.griditem a {
-    color: red;
- }

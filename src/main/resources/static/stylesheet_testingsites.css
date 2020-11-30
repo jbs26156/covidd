@@ -48,6 +48,10 @@ a:hover {
     color: #e10000;
 }
 
+.grid-info a:hover {
+    color: #e10000;
+}
+
 .grid {
     display: grid;
     grid-template-columns: 50% 50%;
