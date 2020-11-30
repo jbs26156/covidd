@@ -28,10 +28,10 @@
         <hr>
     </nav>
     <br>
-    <h2>Please update your recent buildings: </h2><br>
+    <h2>If you have tested positive for COVID-19, help us alert others by identifying buildings you have been in recently: </h2><br>
     <div class="grid">
         <div class="griditem">
-        <form:form method="POST" modelAttribute="selectForm" class="buildingSelectionForm">
+        <form:form method="POST" modelAttribute="contactTracingForm" class="buildingSelectionForm">
                 <form:label for="building1" path="building1">Building 1</form:label>
                 <form:select path="building1">
                     <form:option value="none" label="---SELECT---"/>
