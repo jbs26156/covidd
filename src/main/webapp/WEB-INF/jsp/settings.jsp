@@ -29,10 +29,9 @@
         </nav>
         <br>
         <h2>Complete your profile by filling out your ten most recently visited campus buildings:</h2><br>
-
-        <%-- contact tracing form --%>
         <div class="grid">
             <div class="griditem">
+            <%-- form modelAttribute="selectForm" --%>
             <form:form method="POST" modelAttribute="selectForm" class="buildingSelectionForm">
                     <form:label for="building1" path="building1">Building 1</form:label>
                     <form:select path="building1">
