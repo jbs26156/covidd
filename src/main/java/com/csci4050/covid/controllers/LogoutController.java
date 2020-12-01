@@ -2,25 +2,22 @@ package com.csci4050.covid.controllers;
 
 import com.csci4050.covid.utils.CurrentUser;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LogoutController {
+
     public LogoutController() {
 
     }
-    //TODO populate page with correct page
-    final String page = "f";
-    @RequestMapping(value = page, method = RequestMethod.GET)
-    public String showLoggedOutPage() {
-        System.out.println( "Pre logout Current email: " + CurrentUser.email );
-        logoutCurUser();
-        System.out.println( "Post logout Current email: " + CurrentUser.email );
-        return "index";
-    }
 
+    //TODO populate page with correct page
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String showLoggedOutPage() {
+        logoutCurUser();
+        return "logout";
+    }
 
     public void logoutCurUser() {
         CurrentUser.userName = null;
