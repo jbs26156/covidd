@@ -1,7 +1,5 @@
 package com.csci4050.covid.entities;
 
-import com.csci4050.covid.utils.CurrentUser;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +27,6 @@ public class AccountEntity {
     private String isPhoneAlert;
 
     private String isEmailAlert;
-
 
 
     public Long getId() {
@@ -71,6 +68,7 @@ public class AccountEntity {
     public void setEmail(String email) {
         this.email = email;
     }
+
     public String getLastName() {
         return lastName;
     }

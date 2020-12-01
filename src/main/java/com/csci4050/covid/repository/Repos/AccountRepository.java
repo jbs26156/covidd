@@ -15,5 +15,4 @@ public interface AccountRepository extends CrudRepository<AccountEntity, Long> {
 
     AccountEntity findByPhoneNumber(String phoneNumber);
 
-//    CurrentUser newCurrentUserFromEmail(String email);
 }
