@@ -26,33 +26,31 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-public class SettingsController {
+public class SettingsController extends ControllerParent {
     @Autowired
     private ContactTraceRepo contactTraceRepo;
     private final String slashSettings = "/settings";
-    private final String settings = "settings";
-    private final String selectForm = "selectForm";
-    private final String index = "index";
     private final String slashIndex = "/index";
 
     public SettingsController(ContactTraceRepo contactTraceRepo) {
+        super( "settings", "index", "selectForm" );
         this.contactTraceRepo = contactTraceRepo;
     }
 
     @RequestMapping(value = slashSettings, method = RequestMethod.GET)
     private String showSettingPage(Model model) {
-        model.addAttribute( selectForm, new ContactTraceEntity() );
-        return settings;
+        model.addAttribute( getFormName(), new ContactTraceEntity() );
+        return getLandingPage();
     }
 
     @RequestMapping(value = slashIndex, method = RequestMethod.GET)
     private String showIndexPage(Model model) {
-        return index;
+        return getDestinationPage();
     }
 
 
     @RequestMapping(value = slashSettings, method = RequestMethod.POST)
-    private Object addBuildingsToTable(@ModelAttribute(selectForm) ContactTraceEntity selectForm, BindingResult bindingResult,
+    private Object addBuildingsToTable(@ModelAttribute("selectForm") ContactTraceEntity selectForm, BindingResult bindingResult,
                                        Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
@@ -110,7 +108,7 @@ public class SettingsController {
         } catch (SQLException e) {
             H2JDBCUtils.printSQLException( e );
         }
-        return index;
+        return getDestinationPage();
     }
 
 

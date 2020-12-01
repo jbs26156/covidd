@@ -5,16 +5,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class MyErrorController implements ErrorController {
-    private final String slashError = "/error";
-    private final String errorMessage = "<h1><Marquee>Something went wrong!</Marquee></h1>";
-    @RequestMapping(slashError)
+public class MyErrorController extends ControllerParent implements ErrorController {
+    private String errorMessage;
+
+    public MyErrorController() {
+        super( "/error", null,null );
+        errorMessage = "<h1><Marquee>Something went wrong!</Marquee></h1>";
+    }
+
+    @RequestMapping("/error")
     private String handleError() {
         return errorMessage;
     }
 
     @Override
     public String getErrorPath() {
-        return slashError;
+        return getLandingPage();
     }
 }

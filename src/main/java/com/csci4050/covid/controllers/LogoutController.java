@@ -6,14 +6,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LogoutController {
-    private final String slashLogout = "/logout";
-    private final String logout = "logout";
+public class LogoutController extends ControllerParent {
 
-    @RequestMapping(value = slashLogout, method = RequestMethod.GET)
+    public LogoutController() {
+        super( "logout", null ,null);
+    }
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     private String showLoggedOutPage() {
         logoutCurUser();
-        return logout;
+        return getLandingPage();
     }
 
     private void logoutCurUser() {

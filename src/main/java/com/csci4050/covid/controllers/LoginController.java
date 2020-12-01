@@ -13,39 +13,35 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class LoginController {
-    //Final lInstance Variables
+public class LoginController extends ControllerParent {
     @Autowired
     private final AccountRepository accountRepo;
-    private final String login = "login";
-    private final String index = "index";
-    private final String slashLogin = "/login";
 
     public LoginController(AccountRepository accountRepo) {
+        super( "login", "index","login" );
         this.accountRepo = accountRepo;
-
     }
 
-    @RequestMapping(value = slashLogin, method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     private String showLoginPage(ModelMap model) {
-        model.addAttribute( login, new AccountEntity() );
-        return login;
+        model.addAttribute( getLandingPage(), new AccountEntity() );
+        return getLandingPage();
     }
 
     //TODO add message for invalid entry when logging in
-    @RequestMapping(value = slashLogin, method = RequestMethod.POST)
-    private Object submitLoginIn(@ModelAttribute(login) AccountEntity accountForm, Model model) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    private Object submitLoginIn(@ModelAttribute("login") AccountEntity accountForm, Model model) {
         AccountEntity accountInstance = accountRepo.findByEmail( accountForm.getEmail().toLowerCase() );
         boolean match = !(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )));
         if (!match) {
-            return login;
+            return getLandingPage();
         }
         if (match) {
             CurrentUser user = new CurrentUser( accountForm.getEmail() );
             setCurrentUser( user );
-            return index;
+            return getDestinationPage();
         }
-        return login;
+        return getLandingPage();
     }
 
     private void setCurrentUser(CurrentUser user) {

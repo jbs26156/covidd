@@ -16,27 +16,23 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
 
 @Controller
-public class RegistrationController {
+public class RegistrationController extends ControllerParent {
     @Autowired
     private AccountRepository accountRepo;
-    private final String slashRegistration = "/registration";
-    private final String accountForm = "accountForm";
-    private final String index = "index";
-    private final String registration = "registration";
-    CurrentUser currentUser;
 
     public RegistrationController(AccountRepository accountRepo) {
+        super( "registration", "index","accountForm" );
         this.accountRepo = accountRepo;
     }
 
-    @RequestMapping(value = slashRegistration, method = RequestMethod.GET)
+    @RequestMapping(value = "/registration", method = RequestMethod.GET)
     private String showRegPage(Model model) {
-        model.addAttribute( accountForm, new AccountEntity() );
-        return slashRegistration;
+        model.addAttribute( getFormName(), new AccountEntity() );
+        return "/registration";
     }
 
-    @RequestMapping(value = slashRegistration, method = RequestMethod.POST)
-    private Object registerAccount(@ModelAttribute(accountForm) AccountEntity accountForm, BindingResult bindingResult,
+    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    private Object registerAccount(@ModelAttribute("accountForm") AccountEntity accountForm, BindingResult bindingResult,
                                    Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
@@ -90,7 +86,7 @@ public class RegistrationController {
             CurrentUser.phoneNumber = accountForm.getPhoneNumber();
             CurrentUser.isEmailAlert = accountForm.getIsEmailAlert();
             CurrentUser.isEmailAlert = accountForm.getIsPhoneAlert();
-            return index;
+            return getDestinationPage();
         }
 
         if (eFlag) {
@@ -115,6 +111,6 @@ public class RegistrationController {
             errors += pp;
         }
         request.setAttribute( "responseString", errors );
-        return registration;
+        return getLandingPage();
     }
 }
