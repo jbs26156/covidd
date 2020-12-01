@@ -14,39 +14,49 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LoginController {
-
+    //Final lInstance Variables
     @Autowired
-    private AccountRepository accountRepo;
+    private final AccountRepository accountRepo;
+    private final String login = "login";
+    private final String index = "index";
+    private final String slashLogin = "/login";
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String showLoginPage(ModelMap model) {
-        model.addAttribute( "login", new AccountEntity() );
-        return "login";
+    public LoginController(AccountRepository accountRepo) {
+        this.accountRepo = accountRepo;
+
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Object submitLoginIn(@ModelAttribute("login") AccountEntity accountForm, Model model) {
+    @RequestMapping(value = slashLogin, method = RequestMethod.GET)
+    private String showLoginPage(ModelMap model) {
+        model.addAttribute( login, new AccountEntity() );
+        return login;
+    }
 
+    //TODO add message for invalid entry when logging in
+    @RequestMapping(value = slashLogin, method = RequestMethod.POST)
+    private Object submitLoginIn(@ModelAttribute(login) AccountEntity accountForm, Model model) {
         AccountEntity accountInstance = accountRepo.findByEmail( accountForm.getEmail().toLowerCase() );
-        if (accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() ))) {
-            System.out.println( "Email / Password does not exist" );
-            System.out.println( accountInstance );
-            return "login";
+        boolean match = !(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )));
+        if (!match) {
+            return login;
         }
-        if (!(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )))) {
-            //Build currentuser object using repo
-            CurrentUser user = new CurrentUser(accountForm.getEmail());
-            CurrentUser.id = user.getId();
-            CurrentUser.firstName = user.getFirstName();
-            CurrentUser.email = user.getEmail();
-            CurrentUser.password = user.getPassword();
-            CurrentUser.userName = user.getUserName();
-            CurrentUser.lastName = user.getLastName();
-            CurrentUser.phoneNumber = user.getPhoneNumber();
-            CurrentUser.isEmailAlert = user.getIsEmailAlert();
-            CurrentUser.isEmailAlert = user.getIsPhoneAlert();
-            return "index";
+        if (match) {
+            CurrentUser user = new CurrentUser( accountForm.getEmail() );
+            setCurrentUser( user );
+            return index;
         }
-        return "login";
+        return login;
+    }
+
+    private void setCurrentUser(CurrentUser user) {
+        CurrentUser.id = user.getId();
+        CurrentUser.firstName = user.getFirstName();
+        CurrentUser.email = user.getEmail();
+        CurrentUser.password = user.getPassword();
+        CurrentUser.userName = user.getUserName();
+        CurrentUser.lastName = user.getLastName();
+        CurrentUser.phoneNumber = user.getPhoneNumber();
+        CurrentUser.isEmailAlert = user.getIsEmailAlert();
+        CurrentUser.isEmailAlert = user.getIsPhoneAlert();
     }
 }

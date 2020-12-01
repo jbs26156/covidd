@@ -7,19 +7,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class LogoutController {
+    private final String slashLogout = "/logout";
+    private final String logout = "logout";
 
-    public LogoutController() {
-
-    }
-
-    //TODO populate page with correct page
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
-    public String showLoggedOutPage() {
+    @RequestMapping(value = slashLogout, method = RequestMethod.GET)
+    private String showLoggedOutPage() {
         logoutCurUser();
-        return "logout";
+        return logout;
     }
 
-    public void logoutCurUser() {
+    private void logoutCurUser() {
         CurrentUser.userName = null;
         CurrentUser.id = null;
         CurrentUser.firstName = null;

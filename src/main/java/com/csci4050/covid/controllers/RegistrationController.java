@@ -19,43 +19,42 @@ import java.io.UnsupportedEncodingException;
 public class RegistrationController {
     @Autowired
     private AccountRepository accountRepo;
-
+    private final String slashRegistration = "/registration";
+    private final String accountForm = "accountForm";
+    private final String index = "index";
+    private final String registration = "registration";
     CurrentUser currentUser;
 
     public RegistrationController(AccountRepository accountRepo) {
         this.accountRepo = accountRepo;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String showRegPage(Model model) {
-        model.addAttribute( "accountForm", new AccountEntity() );
-        return "registration";
+    @RequestMapping(value = slashRegistration, method = RequestMethod.GET)
+    private String showRegPage(Model model) {
+        model.addAttribute( accountForm, new AccountEntity() );
+        return slashRegistration;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
-    public Object registerAccount(@ModelAttribute("accountForm") AccountEntity accountForm, BindingResult bindingResult,
-                                  Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
+    @RequestMapping(value = slashRegistration, method = RequestMethod.POST)
+    private Object registerAccount(@ModelAttribute(accountForm) AccountEntity accountForm, BindingResult bindingResult,
+                                   Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
         String errors = "";
-        System.out.println( errors.isEmpty() );
         boolean eFlag = false, uFlag = false, pFlag = false, pAlert = false, eAlert = false;
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
         AccountEntity phoneNumberChecker = accountRepo.findByPhoneNumber( accountForm.getPhoneNumber() );
         if (emailChecker != null) {
-            System.out.println( "Someone already exist with that email" );
             model.addAttribute( "emailExist", "Email already exist" );
             eFlag = true;
         }
         if (userNameChecker != null) {
-            System.out.println( "Someone already exist with that userName" );
             model.addAttribute( "userNameExist", "UserName already exist" );
             uFlag = true;
         }
         if (phoneNumberChecker != null) {
-            System.out.println( "Someone already exist with that Phone Number" );
             model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
             pFlag = true;
         }
@@ -91,7 +90,7 @@ public class RegistrationController {
             CurrentUser.phoneNumber = accountForm.getPhoneNumber();
             CurrentUser.isEmailAlert = accountForm.getIsEmailAlert();
             CurrentUser.isEmailAlert = accountForm.getIsPhoneAlert();
-            return "index";
+            return index;
         }
 
         if (eFlag) {
@@ -116,6 +115,6 @@ public class RegistrationController {
             errors += pp;
         }
         request.setAttribute( "responseString", errors );
-        return "registration";
+        return registration;
     }
 }

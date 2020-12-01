@@ -6,14 +6,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class MyErrorController implements ErrorController {
-
-    @RequestMapping("/error")
-    public String handleError() {
-        return "<h1><Marquee>Something went wrong!</Marquee></h1>";
+    private final String slashError = "/error";
+    private final String errorMessage = "<h1><Marquee>Something went wrong!</Marquee></h1>";
+    @RequestMapping(slashError)
+    private String handleError() {
+        return errorMessage;
     }
 
     @Override
     public String getErrorPath() {
-        return "/error";
+        return slashError;
     }
 }

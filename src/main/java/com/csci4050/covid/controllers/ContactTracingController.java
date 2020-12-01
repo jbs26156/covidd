@@ -18,32 +18,62 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Controller that handles the contact tracing page.
+ * Contains a get method and post method and a method to add
+ * the building names to the page.
+ */
 @Controller
 public class ContactTracingController {
 
     @Autowired
-    ContactTraceRepo contactTraceRepo;
+    ContactTraceRepo contactTraceRepo; // We use the repo to interact with the contact trace table in the DB
 
+    /**
+     * Constructor. This is never explicitly called in our code but it is used
+     * by Spring Boot
+     *
+     * @param contactTraceRepo - sets the contact trace repo to this one passed in ¬
+     */
     public ContactTracingController(ContactTraceRepo contactTraceRepo) {
         this.contactTraceRepo = contactTraceRepo;
     }
 
-
+    /**
+     * Method that links the model attribute from the contacttracing.jsp to a contact trace entity
+     *
+     * @param model - used for our model attribute
+     * @return - the page, contacttracing
+     */
     @RequestMapping(value = "/contacttracing", method = RequestMethod.GET)
-    public String showContactTracePage(Model model) {
+    private String showContactTracePage(Model model) {
+        //Creates a contact trace entity object and links it to the contactTraceForm
         model.addAttribute( "contactTracingForm", new ContactTraceEntity() );
-        return "contacttracing";
+        final String contacttracing = "contacttracing"; //The page address to return to
+        return contacttracing;
     }
 
+    /**
+     * Post method to get the users input from the form and link it to the contact_trace_table in the DB.
+     * The method also will Reference the ContactTraceRepoImpl class to use functions
+     *
+     * @param contactTraceForm - the forms from the contacttracing.jsp
+     * @param bindingResult
+     * @param model - to link to the model attribute
+     * @param request
+     * @return
+     * @throws UnsupportedEncodingException - throws if present
+     * @throws MessagingException - throws if present
+     */
     @RequestMapping(value = "/contacttracing", method = RequestMethod.POST)
-    public Object contactTrace(@ModelAttribute("contactTracingForm") ContactTraceEntity contactTraceForm, BindingResult bindingResult,
+    private Object contactTrace(@ModelAttribute("contactTracingForm") ContactTraceEntity contactTraceForm, BindingResult bindingResult,
                                Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
 
         if (bindingResult.hasErrors()) {
-            return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
+            return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );//if found do this
         }
-        String bList[] = new String[10];
-        ContactTraceRepoImpl contactTraceRepo = new ContactTraceRepoImpl();
+        String bList[] = new String[10]; //This list is going to be used with the findByBuilding function
+        ContactTraceRepoImpl contactTraceRepo = new ContactTraceRepoImpl();//
         //Sorry that the mapping is one number off
         bList[0] = contactTraceForm.getBuilding1();
         bList[1] = contactTraceForm.getBuilding2();
@@ -56,22 +86,28 @@ public class ContactTracingController {
         bList[8] = contactTraceForm.getBuilding9();
         bList[9] = contactTraceForm.getBuilding10();
         for (int i = 0; i < 10; i++) {
-            if (!bList[i].equals( "" ) || bList[i] != null) {
+            if (!bList[i].equals( "" )|| bList[i] != null) {
                 contactTraceRepo.findByBuilding( bList[i] );
             } else {
                 continue;
             }
         }
-        return "index";
+        String index = "index";
+        return index;
     }
 
+    /**
+     * Method is used to get the buildings and put them in a map
+     * to aid the front end
+     * @return
+     */
     @ModelAttribute("buildingsList")
-    public Map<String, String> getBuildingsList() {
-        Map<String, String> buildingsList = new HashMap<String, String>();
-        BuildingsRepoImpl hey = new BuildingsRepoImpl();
-        int len = hey.name( "" ).length;
+    private Map<String, String> getBuildingsList() {
+        Map<String, String> buildingsList = new HashMap<>();
+        BuildingsRepoImpl repo = new BuildingsRepoImpl();
+        int len = repo.name( "" ).length;
         for (int i = 0; i < len - 1; i++) {
-            String name = hey.name( "" )[i];
+            String name = repo.name( "" )[i];
             buildingsList.put( name, name );
         }
         return buildingsList;
