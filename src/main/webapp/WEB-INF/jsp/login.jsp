@@ -26,8 +26,7 @@
             <hr>
         </nav>
         <br>
-
-        <%-- login form checks data with login controller --%>
+        <%-- form modelAttribute="login" --%>
         <form:form method="POST" modelAttribute="login">
             <div class="MyForm form-group">
                 <h2>Login</h2>

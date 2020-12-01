@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿<%-- logout.jsp --%>
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -23,5 +25,8 @@
         </nav>
         <br>
         <h3>You are now logged out!</h3>
+        <div class="logoutbutton">
+             <a href="index.html">Go back to the home page</a>
+        </div>
     </body>
 </html>

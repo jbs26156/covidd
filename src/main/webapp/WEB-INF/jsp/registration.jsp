@@ -27,8 +27,7 @@
             <hr>
         </nav>
         <br>
-
-        <%-- registration form fowards data to registration controller --%>
+        <%-- form modelAttribute="accountForm" --%>
         <form:form method="POST" modelAttribute="accountForm">
             <div class="MyForm form-group">
                 <h2>Sign Up</h2>
@@ -51,7 +50,6 @@
                 <form:button type="submit" class="from-control">Submit</form:button>
             </div>
         </form:form>
-
         <%-- response statement for registration errors --%>
         <div style="color: white; text-align: center">
             <c:if test="${not empty responseString}">
