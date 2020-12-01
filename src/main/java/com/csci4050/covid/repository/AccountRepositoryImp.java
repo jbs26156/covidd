@@ -1,7 +1,7 @@
-package com.csci4050.covid.repository.implementation;
+package com.csci4050.covid.repository;
 
 import com.csci4050.covid.entities.AccountEntity;
-import com.csci4050.covid.repository.Repos.AccountRepository;
+import com.csci4050.covid.repository.AccountRepository;
 import com.csci4050.covid.utils.H2JDBCUtils;
 
 import java.sql.Connection;

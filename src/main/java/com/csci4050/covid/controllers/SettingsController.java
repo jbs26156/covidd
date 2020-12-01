@@ -1,8 +1,8 @@
 package com.csci4050.covid.controllers;
 
 import com.csci4050.covid.entities.ContactTraceEntity;
-import com.csci4050.covid.repository.implementation.BuildingsRepoImpl;
-import com.csci4050.covid.repository.Repos.ContactTraceRepo;
+import com.csci4050.covid.repository.BuildingsRepoImpl;
+import com.csci4050.covid.repository.ContactTraceRepo;
 import com.csci4050.covid.utils.CurrentUser;
 import com.csci4050.covid.utils.H2JDBCUtils;
 import org.springframework.beans.factory.annotation.Autowired;

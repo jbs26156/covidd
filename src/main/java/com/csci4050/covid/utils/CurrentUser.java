@@ -1,7 +1,7 @@
 package com.csci4050.covid.utils;
 
 import com.csci4050.covid.entities.AccountEntity;
-import com.csci4050.covid.repository.implementation.AccountRepositoryImp;
+import com.csci4050.covid.repository.AccountRepositoryImp;
 
 public class CurrentUser {
 

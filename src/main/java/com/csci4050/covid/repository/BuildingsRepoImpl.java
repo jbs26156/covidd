@@ -1,7 +1,7 @@
-package com.csci4050.covid.repository.implementation;
+package com.csci4050.covid.repository;
 
 import com.csci4050.covid.entities.BuildingsEntity;
-import com.csci4050.covid.repository.Repos.BuildingsRepository;
+import com.csci4050.covid.repository.BuildingsRepository;
 import com.csci4050.covid.utils.H2JDBCUtils;
 
 import java.sql.Connection;
@@ -14,7 +14,6 @@ public class BuildingsRepoImpl implements BuildingsRepository {
 
 
     //Implemented methods
-
     @Override
     public String[] name(String name) {
         String[] list = new String[265];
