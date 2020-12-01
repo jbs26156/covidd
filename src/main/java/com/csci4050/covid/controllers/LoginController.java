@@ -45,8 +45,8 @@ public class LoginController extends ControllerParent {
     }
 
     private void setCurrentUser(CurrentUser user) {
-        CurrentUser.id = user.getId();
         CurrentUser.firstName = user.getFirstName();
+        CurrentUser.id = user.getId();
         CurrentUser.email = user.getEmail();
         CurrentUser.password = user.getPassword();
         CurrentUser.userName = user.getUserName();

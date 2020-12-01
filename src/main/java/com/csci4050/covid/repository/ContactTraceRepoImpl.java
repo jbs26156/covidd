@@ -25,10 +25,8 @@ public class ContactTraceRepoImpl implements ContactTraceRepo {
         if (!building.equals( "none" )) {
             String query = "SELECT * FROM CONTACT_TRACE_TABLE WHERE \'" + building + "\' IN (BUILDING1, BUILDING2, BUILDING3, BUILDING4, BUILDING5, BUILDING6, BUILDING7, BUILDING8, BUILDING9, BUILDING10)";
             ContactTraceEntity contactTraceEntityObject = new ContactTraceEntity();
-            H2JDBCUtils utils = new H2JDBCUtils();
             try (Connection connection = H2JDBCUtils.getConnection();
                  PreparedStatement preparedStatement = connection.prepareStatement( query )) {
-                System.out.println( preparedStatement );
                 ResultSet rs = preparedStatement.executeQuery();
                 while (rs.next()) {
                     contactTraceEntityObject.setEmail( rs.getString( "email" ) );
@@ -44,41 +42,6 @@ public class ContactTraceRepoImpl implements ContactTraceRepo {
                     contactTraceEntityObject.setBuilding10( rs.getString( "building10" ) );
                     sendOut( contactTraceEntityObject.getEmail(), building );
                 }
-                //Send emails
-                //If email_column is not empty, send email.
-                System.out.println( "Email should be : " + contactTraceEntityObject.getEmail() );
-//                if (!contactTraceEntityObject.getEmail().equalsIgnoreCase( "" )) {
-//                    String to = contactTraceEntityObject.getEmail();
-//                    String from = "COVID.Alerts.FA2020@gmail.com";
-//                    String host = "smtp.gmail.com";
-//                    Properties properties = System.getProperties();
-//                    properties.put( "mail.smtp.host", host );
-//                    properties.put( "mail.smtp.port", "465" );
-//                    properties.put( "mail.smtp.ssl.enable", "true" );
-//                    properties.put( "mail.smtp.auth", "true" );
-//                    String username = "COVID.Alerts.FA2020@gmail.com";
-//                    String password = "teama2project";
-//                    Session session = Session.getInstance( properties, new javax.mail.Authenticator() {
-//                        protected PasswordAuthentication getPasswordAuthentication() {
-//                            return new PasswordAuthentication( username, password );
-//                        }
-//                    } );
-//
-//                    MimeMessage message = new MimeMessage( session );
-//                    try {
-//                        InternetAddress fromIA = new InternetAddress( from );
-//                        message.setFrom( from );
-//                        InternetAddress toIA = new InternetAddress( to );
-//                        message.addRecipient( Message.RecipientType.TO, toIA );
-//                        message.setSubject( "CAUTION! COVID case near you detected." );
-//                        message.setText( "Please be careful around " + building + ". There was a COVID-19 positive person reported to have been there recently." );
-//                        Transport.send( message );
-//                    } catch (MessagingException mEx) {
-//                        mEx.printStackTrace();
-//                    }
-//
-//                    return contactTraceEntityObject;
-//                }
             } catch (SQLException e) {
                 H2JDBCUtils.printSQLException( e );
             }

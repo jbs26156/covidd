@@ -21,7 +21,7 @@ public class RegistrationController extends ControllerParent {
     private AccountRepository accountRepo;
 
     public RegistrationController(AccountRepository accountRepo) {
-        super( "registration", "index","accountForm" );
+        super( "registration", "index", "accountForm" );
         this.accountRepo = accountRepo;
     }
 
@@ -37,7 +37,6 @@ public class RegistrationController extends ControllerParent {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
-        String errors = "";
         boolean eFlag = false, uFlag = false, pFlag = false, pAlert = false, eAlert = false;
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
@@ -54,20 +53,16 @@ public class RegistrationController extends ControllerParent {
             model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
             pFlag = true;
         }
-        String e = accountForm.getIsEmailAlert().toLowerCase();
-        String p = accountForm.getIsPhoneAlert().toLowerCase();
+        String emailAlertFromForm = accountForm.getIsEmailAlert();
+        String phoneAlertFromForm = accountForm.getIsPhoneAlert();
 
-        if (e.equals( "yes" ) || e.equals( "no" )) {
-            eAlert = false;
-        } else {
+        if (!correctInput( emailAlertFromForm )) {
             eAlert = true;
         }
-        if (p.equals( "yes" ) || p.equals( "no" )) {
-            pAlert = false;
-        } else {
+        if (!correctInput( phoneAlertFromForm )) {//DELETE
             pAlert = true;
         }
-        if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {
+        if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {//DELETE P PART
             accountForm.setFirstName( accountForm.getFirstName() );
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
             accountForm.setPassword( accountForm.getPassword() );
@@ -89,6 +84,13 @@ public class RegistrationController extends ControllerParent {
             return getDestinationPage();
         }
 
+        String errors = errorMessage( eFlag, uFlag, pFlag, eAlert, pAlert );
+        request.setAttribute( "responseString", errors );
+        return getLandingPage();
+    }
+
+    private String errorMessage(boolean eFlag, boolean uFlag, boolean pFlag, boolean eAlert, boolean pAlert) {
+        String errors = "";
         if (eFlag) {
             String emailError = "Email already Used!";
             errors += emailError;
@@ -110,7 +112,20 @@ public class RegistrationController extends ControllerParent {
             String pp = "please enter yes or no!";
             errors += pp;
         }
-        request.setAttribute( "responseString", errors );
-        return getLandingPage();
+        return errors;
+    }
+
+    private boolean isYes(String string) {
+        String str = string.toLowerCase();
+        return str.equals( "yes" );
+    }
+
+    private boolean isNo(String string) {
+        String str = string.toLowerCase();
+        return str.equals( "no" );
+    }
+
+    private boolean correctInput(String string) {
+        return isYes( string ) || isNo( string );
     }
 }

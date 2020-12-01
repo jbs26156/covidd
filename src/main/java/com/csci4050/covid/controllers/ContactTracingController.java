@@ -24,7 +24,6 @@ public class ContactTracingController extends ControllerParent {
     @Autowired
     ContactTraceRepo contactTraceRepo; // We use the repo to interact with the contact trace table in the DB
 
-
     public ContactTracingController(ContactTraceRepo contactTraceRepo) {
         super( "contacttracing", "index", "contactTracingForm" );
         this.contactTraceRepo = contactTraceRepo;
@@ -32,7 +31,6 @@ public class ContactTracingController extends ControllerParent {
 
     @RequestMapping(value = "/contacttracing", method = RequestMethod.GET)
     private String showContactTracePage(Model model) {
-        //Creates a contact trace entity object and links it to the contactTraceForm
         model.addAttribute( getFormName(), new ContactTraceEntity() );
         return getLandingPage();
     }
@@ -44,7 +42,7 @@ public class ContactTracingController extends ControllerParent {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );//if found do this
         }
-        String bList[] = new String[10]; //This list is going to be used with the findByBuilding function
+        String bList[] = new String[10];
         ContactTraceRepoImpl contactTraceRepo = new ContactTraceRepoImpl();//
         bList[0] = contactTraceForm.getBuilding1();
         bList[1] = contactTraceForm.getBuilding2();
@@ -57,7 +55,8 @@ public class ContactTracingController extends ControllerParent {
         bList[8] = contactTraceForm.getBuilding9();
         bList[9] = contactTraceForm.getBuilding10();
         for (int i = 0; i < 10; i++) {
-            if (!bList[i].equals( "" ) || bList[i] != null) {
+            boolean check = check( bList[i] );
+            if (!check) {
                 contactTraceRepo.findByBuilding( bList[i] );
             } else {
                 continue;
@@ -78,4 +77,15 @@ public class ContactTracingController extends ControllerParent {
         return buildingsList;
     }
 
+    private boolean isEmpty(String string) {
+        return string.equals( "" );
+    }
+
+    private boolean isNull(String string) {
+        return string == null;
+    }
+
+    private boolean check(String string) {
+        return isEmpty( string ) || isNull( string );
+    }
 }
