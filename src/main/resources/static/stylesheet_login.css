@@ -38,6 +38,19 @@ a {
     font-size: larger;
 }
 
+.logoutbutton {
+    border: solid red;
+    margin-left: 40%;
+    margin-right: 40%;
+    padding: 2%;
+    background-color: whitesmoke;
+    text-align: center;
+}
+
+.logoutbutton a {
+    color: black;
+}
+
 a:hover {
     color: #e10000;
 }
