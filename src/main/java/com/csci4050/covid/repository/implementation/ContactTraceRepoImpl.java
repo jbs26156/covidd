@@ -19,7 +19,7 @@ import javax.mail.internet.MimeMessage;
 
 
 public class ContactTraceRepoImpl implements ContactTraceRepo {
-
+    //Implemented methods
     @Override
     public ContactTraceEntity findByBuilding(String building) {
         if (!building.equals( "none" )) {
@@ -85,7 +85,6 @@ public class ContactTraceRepoImpl implements ContactTraceRepo {
         }
         return null;
     }
-
     @Override
     public void sendOut(String email, String building) {
         if (!email.equalsIgnoreCase( "" )) {
@@ -120,6 +119,8 @@ public class ContactTraceRepoImpl implements ContactTraceRepo {
 
         }
     }
+
+    //Unimplemented methods
 
     @Override
     public <S extends ContactTraceEntity> S save(S s) {

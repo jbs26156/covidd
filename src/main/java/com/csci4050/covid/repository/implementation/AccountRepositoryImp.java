@@ -11,61 +11,7 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class AccountRepositoryImp implements AccountRepository {
-
-    @Override
-    public <S extends AccountEntity> S save(S s) {
-        return null;
-    }
-
-    @Override
-    public <S extends AccountEntity> Iterable<S> saveAll(Iterable<S> iterable) {
-        return null;
-    }
-
-    @Override
-    public Optional<AccountEntity> findById(Long Id) {
-        return Optional.empty();
-    }
-
-    @Override
-    public boolean existsById(Long aLong) {
-        return false;
-    }
-
-    @Override
-    public Iterable<AccountEntity> findAll() {
-        return null;
-    }
-
-    @Override
-    public Iterable<AccountEntity> findAllById(Iterable<Long> iterable) {
-        return null;
-    }
-
-    @Override
-    public long count() {
-        return 0;
-    }
-
-    @Override
-    public void deleteById(Long aLong) {
-
-    }
-
-    @Override
-    public void delete(AccountEntity accountEntity) {
-
-    }
-
-    @Override
-    public void deleteAll(Iterable<? extends AccountEntity> iterable) {
-
-    }
-
-    @Override
-    public void deleteAll() {
-
-    }
+    //Implemented methods
 
     @Override
     public AccountEntity findByUserName(String userName) {
@@ -164,22 +110,61 @@ public class AccountRepositoryImp implements AccountRepository {
         //Else
         return null;
     }
+    //Unimplemented methods
 
-//    public CurrentUser newCurrentUserFromEmail(String email) {
-//        CurrentUser currentUser = new CurrentUser();
-//        AccountEntity currentAccountEntity = findByEmail( email );
-//        if (currentAccountEntity == null) {
-//            return null;
-//        }
-//        currentUser.setEmail( currentAccountEntity.getEmail() );
-//        currentUser.setFirstName( currentAccountEntity.getFirstName() );
-//        currentUser.setLastName( currentAccountEntity.getLastName() );
-//        currentUser.setId( currentAccountEntity.getId() );
-//        currentUser.setPassword( currentAccountEntity.getPassword() );
-//        currentUser.setIsEmailAlert( currentAccountEntity.getIsEmailAlert() );
-//        currentUser.setIsPhoneAlert( currentAccountEntity.getIsPhoneAlert() );
-//        currentUser.setPhoneNumber( currentAccountEntity.getPhoneNumber() );
-//        return currentUser;
-//    }
+    @Override
+    public <S extends AccountEntity> S save(S s) {
+        return null;
+    }
+
+    @Override
+    public <S extends AccountEntity> Iterable<S> saveAll(Iterable<S> iterable) {
+        return null;
+    }
+
+    @Override
+    public Optional<AccountEntity> findById(Long Id) {
+        return Optional.empty();
+    }
+
+    @Override
+    public boolean existsById(Long aLong) {
+        return false;
+    }
+
+    @Override
+    public Iterable<AccountEntity> findAll() {
+        return null;
+    }
+
+    @Override
+    public Iterable<AccountEntity> findAllById(Iterable<Long> iterable) {
+        return null;
+    }
+
+    @Override
+    public long count() {
+        return 0;
+    }
+
+    @Override
+    public void deleteById(Long aLong) {
+
+    }
+
+    @Override
+    public void delete(AccountEntity accountEntity) {
+
+    }
+
+    @Override
+    public void deleteAll(Iterable<? extends AccountEntity> iterable) {
+
+    }
+
+    @Override
+    public void deleteAll() {
+
+    }
 
 }

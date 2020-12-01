@@ -11,20 +11,9 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 public class BuildingsRepoImpl implements BuildingsRepository {
-    @Override
-    public <S extends BuildingsEntity> S save(S s) {
-        return null;
-    }
 
-    @Override
-    public <S extends BuildingsEntity> Iterable<S> saveAll(Iterable<S> iterable) {
-        return null;
-    }
 
-    @Override
-    public Optional<BuildingsEntity> findById(Long Id) {
-        return Optional.empty();
-    }
+    //Implemented methods
 
     @Override
     public String[] name(String name) {
@@ -45,6 +34,22 @@ public class BuildingsRepoImpl implements BuildingsRepository {
             H2JDBCUtils.printSQLException( e );
         }
         return list;
+    }
+    //Unimplemented methods
+
+    @Override
+    public <S extends BuildingsEntity> S save(S s) {
+        return null;
+    }
+
+    @Override
+    public <S extends BuildingsEntity> Iterable<S> saveAll(Iterable<S> iterable) {
+        return null;
+    }
+
+    @Override
+    public Optional<BuildingsEntity> findById(Long Id) {
+        return Optional.empty();
     }
 
     @Override
