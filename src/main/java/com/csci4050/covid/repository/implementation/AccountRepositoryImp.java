@@ -1,10 +1,9 @@
-package com.csci4050.covid.repository;
+package com.csci4050.covid.repository.implementation;
 
 import com.csci4050.covid.entities.AccountEntity;
-import com.csci4050.covid.utils.CurrentUser;
+import com.csci4050.covid.repository.Repos.AccountRepository;
 import com.csci4050.covid.utils.H2JDBCUtils;
 
-import javax.swing.plaf.synth.SynthScrollBarUI;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

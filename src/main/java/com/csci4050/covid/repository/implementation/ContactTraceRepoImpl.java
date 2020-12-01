@@ -1,6 +1,7 @@
-package com.csci4050.covid.repository;
+package com.csci4050.covid.repository.implementation;
 
 import com.csci4050.covid.entities.ContactTraceEntity;
+import com.csci4050.covid.repository.Repos.ContactTraceRepo;
 import com.csci4050.covid.utils.H2JDBCUtils;
 
 import java.sql.Connection;
