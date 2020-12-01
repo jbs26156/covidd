@@ -11,4 +11,5 @@ public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity, Lon
     //TODO facade design pattern
 
     ContactTraceEntity findByBuilding(String building);
+    void sendOut(String email, String building);
 }

@@ -47,7 +47,7 @@ public class SettingsController {
         return "index";
     }
 
-    
+
     @RequestMapping(value = "/settings", method = RequestMethod.POST)
     public Object addBuildingsToTable(@ModelAttribute("selectForm") ContactTraceEntity selectForm, BindingResult bindingResult,
                                       Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
@@ -61,22 +61,23 @@ public class SettingsController {
         H2JDBCUtils utils = new H2JDBCUtils();
 
         String yesOrNo = CurrentUser.isEmailAlert.toLowerCase();
-        String idQuery = "SELECT id FROM CONTACT_TRACE_TABLE WHERE id = (SELECT MAX(id) FROM CONTACT_TRACE_TABLE)";
-        long index = 2;
+        String idQuery = "SELECT COUNT(*) FROM CONTACT_TRACE_TABLE;";
         try (Connection c = utils.getConnection();
              PreparedStatement preparedStatement = c.prepareStatement( idQuery )) {
             ResultSet rs = preparedStatement.executeQuery();
-            System.out.println( preparedStatement );
-            index = (rs.getLong( "id" ));
-            System.out.println(index + "index");
         } catch (SQLException e) {
             H2JDBCUtils.printSQLException( e );
         }
         if (yesOrNo.equals( "yes" )) {
+            long index = CurrentUser.id;
+            System.out.println( index + "bindex" );
             index++;
+            System.out.println( index + "aindex" );
+
             query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
                     "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + CurrentUser.email + "\', \'" + CurrentUser.userName + "\')";
         } else {
+            long index = CurrentUser.id;
             index++;
             String n = "";
             query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
