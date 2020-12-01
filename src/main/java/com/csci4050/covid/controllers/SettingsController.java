@@ -57,7 +57,7 @@ public class SettingsController {
         }
         //Check database for existing
         // building2, building3, building4, building5, building6, building7, building8, building9, building10, email,username
-        String query;
+        String query = "";
         H2JDBCUtils utils = new H2JDBCUtils();
 
         String yesOrNo = CurrentUser.isEmailAlert.toLowerCase();
@@ -69,20 +69,41 @@ public class SettingsController {
             H2JDBCUtils.printSQLException( e );
         }
         if (yesOrNo.equals( "yes" )) {
-            long index = CurrentUser.id;
-            System.out.println( index + "bindex" );
-            index++;
-            System.out.println( index + "aindex" );
+            String selectStar = "SELECT * FROM CONTACT_TRACE_TABLE WHERE ID = " + CurrentUser.id;
+            try (Connection c = utils.getConnection();
+                 PreparedStatement preparedStatement = c.prepareStatement( selectStar )) {
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    System.out.println("Works");
+                    long index = CurrentUser.id;
+                    query = "UPDATE CONTACT_TRACE_TABLE SET building1 = \'" + selectForm.getBuilding1() + "\' , building2 = \'" + selectForm.getBuilding2() + "\', building3 = \'" + selectForm.getBuilding3() + "\' , building4 = \'" + selectForm.getBuilding4() +"\', building5 = \'" + selectForm.getBuilding5() + "\', building6 = \'" + selectForm.getBuilding6() + "\' , building7 = \'" + selectForm.getBuilding7() + "\', building8 = \'"+ selectForm.getBuilding8() + "\' , building9 = \'" + selectForm.getBuilding9() + "\', building10 = \'" + selectForm.getBuilding10() + "\' WHERE ID=" + index;
+                }else{
+                    long index = CurrentUser.id;
+                    query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
+                            "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + CurrentUser.email + "\', \'" + CurrentUser.userName + "\')";
+                }
+            } catch (SQLException e) {
+                H2JDBCUtils.printSQLException( e );
+            }
 
-            query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
-                    "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + CurrentUser.email + "\', \'" + CurrentUser.userName + "\')";
-        } else {
-            long index = CurrentUser.id;
-            index++;
-            String n = "";
-            query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
-                    "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'" + n + "\', \'" + CurrentUser.userName + "\')";
-        }
+            } else {
+            String selectStar = "SELECT * FROM CONTACT_TRACE_TABLE WHERE ID = " + CurrentUser.id;
+            try (Connection c = utils.getConnection();
+                 PreparedStatement preparedStatement = c.prepareStatement( selectStar )) {
+                ResultSet rs = preparedStatement.executeQuery();
+                if(rs.next()){
+                    long index = CurrentUser.id;
+                    query = "UPDATE CONTACT_TRACE_TABLE SET building1 =\'" + selectForm.getBuilding1() + "\' , building2 = \'" + selectForm.getBuilding2() + "\', building3 = \'" + selectForm.getBuilding3() + "\' , building4 = \'" + selectForm.getBuilding4() +"\', building5 = \'" + selectForm.getBuilding5() + "\', building6 = \'" + selectForm.getBuilding6() + "\' , building7 = \'" + selectForm.getBuilding7() + "\', building8 = \'"+ selectForm.getBuilding8() + "\' , building9 = \'" + selectForm.getBuilding9() + "\', building10 = \'" + selectForm.getBuilding10() + "\' WHERE ID=" + index;
+                }else{
+                    long index = CurrentUser.id;
+                    query = "INSERT INTO CONTACT_TRACE_TABLE (id, building1, building2, building3, building4, building5, building6, building7, building8, building9, building10, email, username)" +
+                            "VALUES (" + index + ", \'" + selectForm.getBuilding1() + "\', \'" + selectForm.getBuilding2() + "\', \'" + selectForm.getBuilding3() + "\', \'" + selectForm.getBuilding4() + "\', \'" + selectForm.getBuilding5() + "\', \'" + selectForm.getBuilding6() + "\', \'" + selectForm.getBuilding7() + "\', \'" + selectForm.getBuilding8() + "\', \'" + selectForm.getBuilding9() + "\', \'" + selectForm.getBuilding10() + "\', \'"  + "\', \'" + CurrentUser.userName + "\')";
+                }
+            } catch (SQLException e) {
+                H2JDBCUtils.printSQLException( e );
+            }
+
+           }
         try (Connection connection = utils.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement( query )) {
             System.out.println( preparedStatement );
