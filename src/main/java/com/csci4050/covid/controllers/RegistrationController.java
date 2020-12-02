@@ -3,6 +3,7 @@ package com.csci4050.covid.controllers;
 import com.csci4050.covid.entities.AccountEntity;
 import com.csci4050.covid.repository.AccountRepository;
 import com.csci4050.covid.utils.CurrentUser;
+import com.csci4050.covid.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,10 +57,10 @@ public class RegistrationController extends ControllerParent {
         String emailAlertFromForm = accountForm.getIsEmailAlert();
         String phoneAlertFromForm = accountForm.getIsPhoneAlert();
 
-        if (!correctInput( emailAlertFromForm )) {
+        if (!StringUtils.yesOrNo( emailAlertFromForm )) {
             eAlert = true;
         }
-        if (!correctInput( phoneAlertFromForm )) {//DELETE
+        if (!StringUtils.yesOrNo( phoneAlertFromForm )) {//DELETE
             pAlert = true;
         }
         if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {//DELETE P PART
@@ -115,17 +116,4 @@ public class RegistrationController extends ControllerParent {
         return errors;
     }
 
-    private boolean isYes(String string) {
-        String str = string.toLowerCase();
-        return str.equals( "yes" );
-    }
-
-    private boolean isNo(String string) {
-        String str = string.toLowerCase();
-        return str.equals( "no" );
-    }
-
-    private boolean correctInput(String string) {
-        return isYes( string ) || isNo( string );
-    }
 }

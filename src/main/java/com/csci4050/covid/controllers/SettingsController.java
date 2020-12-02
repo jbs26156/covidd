@@ -5,6 +5,7 @@ import com.csci4050.covid.repository.BuildingsRepoImpl;
 import com.csci4050.covid.repository.ContactTraceRepo;
 import com.csci4050.covid.utils.CurrentUser;
 import com.csci4050.covid.utils.H2JDBCUtils;
+import com.csci4050.covid.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,6 +32,7 @@ public class SettingsController extends ControllerParent {
     private ContactTraceRepo contactTraceRepo;
     private final String slashSettings = "/settings";
     private final String slashIndex = "/index";
+    H2JDBCUtils utils = new H2JDBCUtils();
 
     public SettingsController(ContactTraceRepo contactTraceRepo) {
         super( "settings", "index", "selectForm" );
@@ -56,8 +58,7 @@ public class SettingsController extends ControllerParent {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
         String query = "";
-        H2JDBCUtils utils = new H2JDBCUtils();
-        String yesOrNo = CurrentUser.isEmailAlert.toLowerCase();
+        String yesOrNo = CurrentUser.isEmailAlert;
         String idQuery = "SELECT COUNT(*) FROM CONTACT_TRACE_TABLE;";
         try (Connection c = utils.getConnection();
              PreparedStatement preparedStatement = c.prepareStatement( idQuery )) {
@@ -65,7 +66,7 @@ public class SettingsController extends ControllerParent {
         } catch (SQLException e) {
             H2JDBCUtils.printSQLException( e );
         }
-        if (yesOrNo.equals( "yes" )) {
+        if (StringUtils.isYes( yesOrNo )) {
             String selectStar = "SELECT * FROM CONTACT_TRACE_TABLE WHERE ID = " + CurrentUser.id;
             try (Connection c = utils.getConnection();
                  PreparedStatement preparedStatement = c.prepareStatement( selectStar )) {
@@ -110,8 +111,6 @@ public class SettingsController extends ControllerParent {
         }
         return getDestinationPage();
     }
-
-
     @ModelAttribute("buildingsList")
     private Map<String, String> getBuildingsList() {
         Map<String, String> buildingsList = new HashMap<String, String>();

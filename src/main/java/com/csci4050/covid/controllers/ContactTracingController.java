@@ -4,6 +4,7 @@ import com.csci4050.covid.entities.ContactTraceEntity;
 import com.csci4050.covid.repository.BuildingsRepoImpl;
 import com.csci4050.covid.repository.ContactTraceRepo;
 import com.csci4050.covid.repository.ContactTraceRepoImpl;
+import com.csci4050.covid.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,7 +56,7 @@ public class ContactTracingController extends ControllerParent {
         bList[8] = contactTraceForm.getBuilding9();
         bList[9] = contactTraceForm.getBuilding10();
         for (int i = 0; i < 10; i++) {
-            boolean check = check( bList[i] );
+            boolean check = StringUtils.isEmptyOrNull( bList[i] );
             if (!check) {
                 contactTraceRepo.findByBuilding( bList[i] );
             } else {
@@ -75,17 +76,5 @@ public class ContactTracingController extends ControllerParent {
             buildingsList.put( name, name );
         }
         return buildingsList;
-    }
-
-    private boolean isEmpty(String string) {
-        return string.equals( "" );
-    }
-
-    private boolean isNull(String string) {
-        return string == null;
-    }
-
-    private boolean check(String string) {
-        return isEmpty( string ) || isNull( string );
     }
 }

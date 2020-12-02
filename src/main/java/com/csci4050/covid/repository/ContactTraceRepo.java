@@ -8,7 +8,6 @@ import java.util.Optional;
 
 
 public interface ContactTraceRepo extends CrudRepository<ContactTraceEntity, Long> {
-    //TODO facade design pattern
 
     ContactTraceEntity findByBuilding(String building);
     void sendOut(String email, String building);
