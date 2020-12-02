@@ -16,8 +16,7 @@ public class BuildingsEntity {
     private Long id;
     private String direction;
     private String name;
-    private Long numPositives;
-    private Date mostRecentPositive;
+
 
     public Long getId() {
         return id;
@@ -43,19 +42,4 @@ public class BuildingsEntity {
         this.name = name;
     }
 
-    public Long getNumPositives() {
-        return numPositives;
-    }
-
-    public void setNumPositives(Long numPositives) {
-        this.numPositives = numPositives;
-    }
-
-    public Date getMostRecentPositive() {
-        return mostRecentPositive;
-    }
-
-    public void setMostRecentPositive(Date mostRecentPositive) {
-        this.mostRecentPositive = mostRecentPositive;
-    }
 }
