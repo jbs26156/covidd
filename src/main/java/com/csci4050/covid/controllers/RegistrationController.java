@@ -38,7 +38,7 @@ public class RegistrationController extends ControllerParent {
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status( HttpStatus.BAD_REQUEST ).body( null );
         }
-        boolean eFlag = false, uFlag = false, pFlag = false, pAlert = false, eAlert = false;
+        boolean eFlag = false, uFlag = false, pFlag = false, pAlert = false, eAlert = false, passwordEmpty =false;
         AccountEntity emailChecker = accountRepo.findByEmail( accountForm.getEmail() );
         AccountEntity userNameChecker = accountRepo.findByUserName( accountForm.getUserName() );
         AccountEntity phoneNumberChecker = accountRepo.findByPhoneNumber( accountForm.getPhoneNumber() );
@@ -54,6 +54,9 @@ public class RegistrationController extends ControllerParent {
             model.addAttribute( "phoneNumberExist", "Phone Number Exist already exist" );
             pFlag = true;
         }
+        if(accountForm.getPassword().equals( "" )){
+            passwordEmpty=true;
+        }
         String emailAlertFromForm = accountForm.getIsEmailAlert();
         String phoneAlertFromForm = accountForm.getIsPhoneAlert();
 
@@ -63,7 +66,7 @@ public class RegistrationController extends ControllerParent {
         if (!StringUtils.yesOrNo( phoneAlertFromForm )) {//DELETE
             pAlert = true;
         }
-        if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert) {//DELETE P PART
+        if (!eFlag && !uFlag && !pFlag && !pAlert && !eAlert && !passwordEmpty) {//DELETE P PART
             accountForm.setFirstName( accountForm.getFirstName() );
             accountForm.setEmail( accountForm.getEmail().toLowerCase() );
             accountForm.setPassword( accountForm.getPassword() );
@@ -85,12 +88,12 @@ public class RegistrationController extends ControllerParent {
             return getDestinationPage();
         }
 
-        String errors = errorMessage( eFlag, uFlag, pFlag, eAlert, pAlert );
+        String errors = errorMessage( eFlag, uFlag, pFlag, eAlert, pAlert,passwordEmpty );
         request.setAttribute( "responseString", errors );
         return getLandingPage();
     }
 
-    private String errorMessage(boolean eFlag, boolean uFlag, boolean pFlag, boolean eAlert, boolean pAlert) {
+    private String errorMessage(boolean eFlag, boolean uFlag, boolean pFlag, boolean eAlert, boolean pAlert,boolean passwordEmpty) {
         String errors = "";
         if (eFlag) {
             String emailError = "Email already Used!";
@@ -112,6 +115,10 @@ public class RegistrationController extends ControllerParent {
         if (pAlert) {
             String pp = "please enter yes or no!";
             errors += pp;
+        }
+        if(passwordEmpty){
+            String pp = "password cannot be empty";
+            errors+=pp;
         }
         return errors;
     }
