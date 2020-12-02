@@ -2,7 +2,7 @@
 
 <%-- spring form handler --%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -38,6 +38,12 @@
             </div>
         </form:form>
         <h3 style="margin-top: 5%;">Dont have an account yet? Create one <a href="registration">here</a>.</h3>
+        <%-- response statement for registration errors --%>
+        <div style="color: white; text-align: center">
+            <c:if test="${not empty responseString}">
+                <c:out value="${responseString}"></c:out>
+            </c:if>
+        </div>
     </body>
 </html>
 

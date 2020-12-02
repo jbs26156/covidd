@@ -1,13 +1,9 @@
 package com.csci4050.covid.entities;
 
-import jdk.jfr.Enabled;
-
-import javax.annotation.processing.Generated;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Date;
 
 @Entity(name = "buildings")
 public class BuildingsEntity {

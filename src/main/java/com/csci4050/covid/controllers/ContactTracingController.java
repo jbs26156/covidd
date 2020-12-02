@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import java.io.UnsupportedEncodingException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -63,6 +64,8 @@ public class ContactTracingController extends ControllerParent {
                 continue;
             }
         }
+        java.sql.Date date = new java.sql.Date( Calendar.getInstance().getTime().getTime());
+        
         return getDestinationPage();
     }
 

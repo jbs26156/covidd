@@ -12,13 +12,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+
 @Controller
 public class LoginController extends ControllerParent {
     @Autowired
     private final AccountRepository accountRepo;
 
     public LoginController(AccountRepository accountRepo) {
-        super( "login", "index","login" );
+        super( "login", "index", "login" );
         this.accountRepo = accountRepo;
     }
 
@@ -30,10 +34,12 @@ public class LoginController extends ControllerParent {
 
     //TODO add message for invalid entry when logging in
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    private Object submitLoginIn(@ModelAttribute("login") AccountEntity accountForm, Model model) {
+    private Object submitLoginIn(@ModelAttribute("login") AccountEntity accountForm, Model model, HttpServletRequest request) throws UnsupportedEncodingException, MessagingException {
         AccountEntity accountInstance = accountRepo.findByEmail( accountForm.getEmail().toLowerCase() );
         boolean match = !(accountInstance == null || !(accountInstance.getPassword().matches( accountForm.getPassword() )));
         if (!match) {
+            String errors = "Email and Password do not match";
+            request.setAttribute( "responseString", errors );
             return getLandingPage();
         }
         if (match) {
@@ -41,6 +47,7 @@ public class LoginController extends ControllerParent {
             setCurrentUser( user );
             return getDestinationPage();
         }
+
         return getLandingPage();
     }
 
