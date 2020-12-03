@@ -36,7 +36,7 @@
         <br>
         <div class="make-account-container">
             <hr><br>
-            <h2 style="color: black;">Get Text and Email Notifications!<br><br>Allow text and emails alerts to stay informed about campus hotspots no matter where you are.</h2>
+            <h2 style="color: black;">Update you buildings!<br><br>Update your recently visited buildings to recieve alerts of positive tests in the area.</h2>
             <br>
             <h2><a href="settings" style="color: black; border: solid; border-color: #e10000; padding:.5%;">Change Settings</a></h2>
             <br><hr>
