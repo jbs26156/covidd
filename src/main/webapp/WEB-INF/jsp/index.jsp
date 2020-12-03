@@ -58,7 +58,7 @@
             </div>
             <div class="grid-item">
                 <div style="font-size: larger;"><b>SYMPTOM CHECKER</b></div><br>
-                Login to the site to check your symptoms. If you may have COVID-19, we have
+                Check your symptoms using UGA's DawgCheck. If you may have COVID-19, we have
                 provided several testing locations under the Testing Sites page.<br>
             </div>
             <div class="grid-item">
