@@ -19,7 +19,7 @@
         <nav>
             <hr>
             <a href="index.html">HOME</a>
-            <a href="login">CONTACT TRACING</a>
+            <a href="symptomchecker_loggedout.html">SYMPTOM CHECKER</a>
             <a href="donations_loggedout.html">DONATIONS</a>
             <a href="testingsites_loggedout.html">TESTING SITES</a>
             <a href="login">LOGIN</a>
